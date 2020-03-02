@@ -12,6 +12,8 @@ public class PlayerController_v3 : MonoBehaviour
     bool on_ladder = false;
     float y_speed;
     bool in_flight = true;
+    bool ladder_stun = false;
+    public bool ladder_stun_setter { set { ladder_stun = value; } }
     Vector2 lookDirection = new Vector2(1, 0);
     Animator animator;
     Rigidbody2D rigidbody2d;
@@ -43,6 +45,10 @@ public class PlayerController_v3 : MonoBehaviour
         if (on_ladder)
         {
             vertical = Input.GetAxis("Vertical");
+            if (ladder_stun && vertical>0)
+            {
+                vertical = 0;
+            }
             Vector2 mov = new Vector2(horizontal,vertical);
             rigidbody2d.MovePosition(prw_position+mov * speed*Time.fixedDeltaTime);
             return;

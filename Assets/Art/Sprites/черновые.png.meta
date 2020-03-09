@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: f5575cb4808dc1a4d97e136aebe93acf
+guid: 353fb90dba20d614aa29cb3aadef1138
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1796783326799819255
-    second: Sprayty_M_0
+      213: 7718172384853162377
+    second: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_0"
   - first:
-      213: 2637999273363752074
-    second: Sprayty_M_1
+      213: -5225315036003534861
+    second: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_1"
   - first:
-      213: -3391955519768771194
-    second: Sprayty_M_2
+      213: -6523312988961420161
+    second: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_2"
   - first:
-      213: -4591281357735121223
-    second: Sprayty_M_3
+      213: 1539731905756284081
+    second: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_3"
   - first:
-      213: 397628394240488219
-    second: Sprayty_M_4
+      213: -1386719285557450993
+    second: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_4"
   - first:
-      213: 1752166703102702795
-    second: Sprayty_M_5
+      213: 6349457927533323516
+    second: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_5"
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -104,106 +104,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprayty_M_0
+      name: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_0"
       rect:
         serializedVersion: 2
-        x: 39
-        y: 40
+        x: 17
+        y: 82
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f17f3c7ae47fe810800000000000000
-      internalID: 1796783326799819255
+      spriteID: 989f66234e47c1b60800000000000000
+      internalID: 7718172384853162377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprayty_M_1
+      name: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_1"
       rect:
         serializedVersion: 2
-        x: 39
-        y: 74
+        x: 17
+        y: 47
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a84c596cc5e0c9420800000000000000
-      internalID: 2637999273363752074
+      spriteID: 3f7708fd8a3fb77b0800000000000000
+      internalID: -5225315036003534861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprayty_M_3
+      name: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_2"
       rect:
         serializedVersion: 2
-        x: 111
-        y: 40
+        x: 18
+        y: 10
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9be23584eed7840c0800000000000000
-      internalID: -4591281357735121223
+      spriteID: f7c434606698875a0800000000000000
+      internalID: -6523312988961420161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprayty_M_4
+      name: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_3"
       rect:
         serializedVersion: 2
-        x: 111
-        y: 74
+        x: 197
+        y: 109
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b133057fae8a48500800000000000000
-      internalID: 397628394240488219
+      spriteID: 1b440fba20a3e5510800000000000000
+      internalID: 1539731905756284081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprayty_M_5
+      name: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_4"
       rect:
         serializedVersion: 2
-        x: 3
-        y: 74
+        x: 197
+        y: 72
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc434b54552f05810800000000000000
-      internalID: 1752166703102702795
+      spriteID: f072a2d282261cce0800000000000000
+      internalID: -1386719285557450993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0447\u0435\u0440\u043D\u043E\u0432\u044B\u0435_5"
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 27
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf469ee185ecd1850800000000000000
+      internalID: 6349457927533323516
       vertices: []
       indices: 
       edges: []

@@ -26,6 +26,12 @@ public class PlayerController_v3 : MonoBehaviour
     Vector2 last_checkpoint;
     int last_checkpoint_priority;
     public bool dead = false;
+    bool drag = false;
+    public bool drag_status_set { set { drag = value; } }
+    float drag_dbf;
+    public float drag_dbf_change { set { drag_dbf = value; } }
+    public Vector2 mov_pos;
+    public Vector2 char_mov { get { return mov_pos; } }  // w/o prw_pos
     Vector2 lookDirection = new Vector2(1, 0);
     Animator animator;
     Rigidbody2D rigidbody2d;
@@ -102,6 +108,11 @@ public class PlayerController_v3 : MonoBehaviour
             y_speed -= y_speed_attenuation_by_time;
         }
         vertical = -gravity + y_speed;
+        if (drag)
+        {
+            horizontal *= drag_dbf;
+            mov_pos = new Vector2(horizontal  * speed* Time.fixedDeltaTime, vertical* Time.fixedDeltaTime);
+        }
         Vector2 next_position = new Vector2(prw_position.x + horizontal * Time.fixedDeltaTime * speed, prw_position.y + vertical * Time.fixedDeltaTime);
         if (remote_mov)
         {

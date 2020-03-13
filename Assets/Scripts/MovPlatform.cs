@@ -7,7 +7,7 @@ public class MovPlatform : MonoBehaviour
     public float X_end_point;
     public float Y_end_point;
     public float speed;
-    public bool flip = false;
+    bool flip = false;
     float dist_mag;
     Rigidbody2D rigidbody2d;
     Vector2 start_point;

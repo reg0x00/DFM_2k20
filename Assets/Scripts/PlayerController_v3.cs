@@ -56,7 +56,7 @@ public class PlayerController_v3 : MonoBehaviour
     {
         if (dead)
         {
-            rigidbody2d.MovePosition(last_checkpoint);
+            rigidbody2d.position=last_checkpoint;
             dead = false;
             return;
         }
@@ -131,7 +131,13 @@ public class PlayerController_v3 : MonoBehaviour
         //in_flight = true;
         foreach (ContactPoint2D point in collision.contacts)
         {
-            
+            if (Mathf.Approximately(point.normal.y, 1.0F))
+            {
+                if (collision.collider.GetComponent<MovPlatform>() != null)
+                {
+                    remote_mov = true;
+                }
+            }
             if (Mathf.Approximately(point.normal.y, 1.0F))
             {
                 in_flight = false;
@@ -139,7 +145,7 @@ public class PlayerController_v3 : MonoBehaviour
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
-    {
+    {        
         //if (collision.collider.name == "Tilemap")
         //{
         //    in_flight = true;
@@ -154,13 +160,6 @@ public class PlayerController_v3 : MonoBehaviour
     {
         foreach (ContactPoint2D point in collision.contacts)
         {
-            if (Mathf.Approximately(point.normal.y, 1.0F))
-            {
-                if (collision.collider.GetComponent<MovPlatform>() != null)
-                {
-                    remote_mov = true;
-                }
-            }
                 if (Mathf.Approximately(point.normal.y, -1.0F))
             {
                 Flight_hard_reset();
@@ -169,7 +168,7 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<KillZone>() != null)
+        if (collision.name== "Spikes")
         {
             dead = true;
         }

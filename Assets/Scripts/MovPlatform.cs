@@ -28,7 +28,7 @@ public class MovPlatform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {   
         Vector2 prw_position = rigidbody2d.position;
         if ((start_point-prw_position).magnitude>dist_mag && !flip)
@@ -41,8 +41,8 @@ public class MovPlatform : MonoBehaviour
             path_to_target *= -1;
             flip = false;
         }
-        mov = path_to_target * Time.deltaTime * speed;
-        rigidbody2d.MovePosition(prw_position+ path_to_target * Time.deltaTime*speed);
+        mov = path_to_target * Time.fixedDeltaTime * speed;
+        rigidbody2d.MovePosition(prw_position+ path_to_target * Time.fixedDeltaTime*speed);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {

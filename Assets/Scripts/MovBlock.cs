@@ -22,7 +22,7 @@ public class MovBlock : MonoBehaviour
         relax_timer = time_to_relax;
         PF_timer = delay_to_apply_post_force;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (apply_post_force)
         {
@@ -34,7 +34,7 @@ public class MovBlock : MonoBehaviour
             }
             else
             {
-                PF_timer -= Time.deltaTime;
+                PF_timer -= Time.fixedDeltaTime;
             }
         }
         if (lock_is_set && !rigidbody2d.isKinematic)
@@ -46,7 +46,7 @@ public class MovBlock : MonoBehaviour
                     relax_timer = time_to_relax;
                     rigidbody2d.isKinematic = true;
                 }
-                relax_timer -= Time.deltaTime;
+                relax_timer -= Time.fixedDeltaTime;
             }
             else
             {

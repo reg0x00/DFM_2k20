@@ -14,6 +14,7 @@ public class PlayerController_v3 : MonoBehaviour
     bool on_ladder = false;
     float default_speed;
     float y_speed;
+    Vector2 prw_pos = new Vector2(0,0);
     public float y_speed_set { set { y_speed = value; } }
     bool in_flight = true;
     bool in_flight_last_frame_processed = true; // in case, when several colliders involved
@@ -61,6 +62,10 @@ public class PlayerController_v3 : MonoBehaviour
             return;
         }
         in_flight_last_frame_processed = true;
+        if (in_flight && rigidbody2d.position.y == prw_pos.y && Mathf.Approximately(rigidbody2d.position.y,0))
+        {
+            Flight_hard_reset();
+        }
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = 0.0f;
         Vector2 prw_position = rigidbody2d.position;
@@ -118,6 +123,10 @@ public class PlayerController_v3 : MonoBehaviour
         {
             next_position += remote_mov_v2;
         }
+        if (in_flight)
+        {
+            prw_pos = rigidbody2d.position;
+        }
         rigidbody2d.MovePosition(next_position);
 
     }
@@ -141,6 +150,7 @@ public class PlayerController_v3 : MonoBehaviour
             if (Mathf.Approximately(point.normal.y, 1.0F))
             {
                 in_flight = false;
+                y_speed = 0;
             }
         }
     }
@@ -184,6 +194,7 @@ public class PlayerController_v3 : MonoBehaviour
     private void Flight_hard_reset()
     {
         y_speed = jump_height/2;
+        Debug.Log("Reset");
     }
 
 }

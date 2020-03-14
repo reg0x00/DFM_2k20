@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CheckPoint.cs" />
-    <Compile Include="Assets\Scripts\KillZone.cs" />
     <Compile Include="Assets\Scripts\MovBlock.cs" />
     <Compile Include="Assets\Scripts\MovPlatform.cs" />
     <Compile Include="Assets\Scripts\Old\CharacterController2D.cs" />

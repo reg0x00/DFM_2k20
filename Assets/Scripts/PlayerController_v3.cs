@@ -194,7 +194,6 @@ public class PlayerController_v3 : MonoBehaviour
     private void Flight_hard_reset()
     {
         y_speed = jump_height/2;
-        Debug.Log("Reset");
     }
 
 }

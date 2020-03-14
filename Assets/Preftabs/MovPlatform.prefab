@@ -99,8 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   X_end_point: -24
   Y_end_point: 13.16
-  speed: 10
-  flip: 0
+  speed: 5
 --- !u!50 &1778203885710551833
 Rigidbody2D:
   serializedVersion: 4

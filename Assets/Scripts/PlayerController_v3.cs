@@ -24,9 +24,15 @@ public class PlayerController_v3 : MonoBehaviour
     public bool ch_remote_control { set { remote_mov = value; } }
     Vector2 remote_mov_v2;
     public Vector2 Remote_mov_v2_s { set { remote_mov_v2 = value; } }
+    bool high_priority; // for remote synchronization 
+    public bool set_high_pri { set { high_priority = value; } }
+    float last_FixedUpdate_time;
+    public float get_last_FU_time { get { return last_FixedUpdate_time; } }
+    bool remote_next_frame_is_flip = false; // for high priority of charter
+    public bool remote_NF_flip { set { remote_next_frame_is_flip = value; } }
     Vector2 last_checkpoint;
     int last_checkpoint_priority;
-    public bool dead = false;
+    bool dead = false;
     bool drag = false;
     public bool drag_status_set { set { drag = value; } }
     float drag_dbf;
@@ -55,6 +61,7 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        last_FixedUpdate_time = Time.fixedTime;
         if (dead)
         {
             rigidbody2d.position=last_checkpoint;
@@ -121,13 +128,17 @@ public class PlayerController_v3 : MonoBehaviour
         Vector2 next_position = new Vector2(prw_position.x + horizontal * Time.fixedDeltaTime * speed, prw_position.y + vertical * Time.fixedDeltaTime);
         if (remote_mov)
         {
+            if (high_priority && remote_next_frame_is_flip)
+            {
+                remote_mov_v2 *= -1;
+            }
             next_position += remote_mov_v2;
         }
         if (in_flight)
         {
             prw_pos = rigidbody2d.position;
         }
-        rigidbody2d.MovePosition(next_position);
+        rigidbody2d.MovePosition(next_position);        
 
     }
     private void OnCollisionStay2D(Collision2D collision)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController_v3 : MonoBehaviour
 {
@@ -8,13 +9,13 @@ public class PlayerController_v3 : MonoBehaviour
     public float gravity;
     public float y_speed_attenuation_by_time;
     public float speed;
-    bool changed_speed = false;
-    public bool changed_speed_status { set { changed_speed = value; } }
+    float speed_boost_time = 0;
+    public float set_speed_boost_time { set { speed_boost_time = value; } }
     public bool ladder_set { set { on_ladder = value; } }
     bool on_ladder = false;
     float default_speed;
     float y_speed;
-    Vector2 prw_pos = new Vector2(0,0);
+    Vector2 prw_pos = new Vector2(0, 0);
     public float y_speed_set { set { y_speed = value; } }
     bool in_flight = true;
     bool in_flight_last_frame_processed = true; // in case, when several colliders involved
@@ -26,6 +27,7 @@ public class PlayerController_v3 : MonoBehaviour
     public Vector2 Remote_mov_v2_s { set { remote_mov_v2 = value; } }
     bool high_priority; // for remote synchronization 
     public bool set_high_pri { set { high_priority = value; } }
+    float game_timer_offset = 0.0F;
     float last_FixedUpdate_time;
     public float get_last_FU_time { get { return last_FixedUpdate_time; } }
     bool remote_next_frame_is_flip = false; // for high priority of charter
@@ -33,6 +35,10 @@ public class PlayerController_v3 : MonoBehaviour
     Vector2 last_checkpoint;
     int last_checkpoint_priority;
     bool dead = false;
+    int health;
+    public int max_health;
+    bool health_is_full;
+    public bool check_max_hp_status { get { return health_is_full; } }
     bool drag = false;
     public bool drag_status_set { set { drag = value; } }
     float drag_dbf;
@@ -42,6 +48,7 @@ public class PlayerController_v3 : MonoBehaviour
     Vector2 lookDirection = new Vector2(1, 0);
     Animator animator;
     Rigidbody2D rigidbody2d;
+    public Text Timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +59,8 @@ public class PlayerController_v3 : MonoBehaviour
         default_speed = speed;
         last_checkpoint = rigidbody2d.position;
         last_checkpoint_priority = -1;
+        health = max_health;
+        health_is_full = true;
     }
 
     // Update is called once per frame
@@ -62,14 +71,16 @@ public class PlayerController_v3 : MonoBehaviour
     private void FixedUpdate()
     {
         last_FixedUpdate_time = Time.fixedTime;
+        Timer.text = (last_FixedUpdate_time - game_timer_offset).ToString("F2");
         if (dead)
         {
-            rigidbody2d.position=last_checkpoint;
+            rigidbody2d.position = last_checkpoint;
             dead = false;
+            Add_Health(-1);            
             return;
         }
         in_flight_last_frame_processed = true;
-        if (in_flight && rigidbody2d.position.y == prw_pos.y && Mathf.Approximately(rigidbody2d.position.y,0))
+        if (in_flight && rigidbody2d.position.y == prw_pos.y && Mathf.Approximately(rigidbody2d.position.y, 0))
         {
             Flight_hard_reset();
         }
@@ -82,7 +93,11 @@ public class PlayerController_v3 : MonoBehaviour
             lookDirection.Normalize();
         }
         animator.SetFloat("Move X", lookDirection.x);
-        if(changed_speed && speed != default_speed)
+        if (speed_boost_time > 0)
+        {
+            speed_boost_time -= Time.fixedDeltaTime;
+        }
+        else if (default_speed != speed)
         {
             speed = default_speed;
         }
@@ -91,7 +106,7 @@ public class PlayerController_v3 : MonoBehaviour
             if (Input.GetButton("Jump"))
             {
                 y_speed += jump_height;
-                in_flight = true;                
+                in_flight = true;
             }
             vertical = Input.GetAxis("Vertical");
             if (ladder_stun)
@@ -123,7 +138,7 @@ public class PlayerController_v3 : MonoBehaviour
         if (drag)
         {
             horizontal *= drag_dbf;
-            mov_pos = new Vector2(horizontal  * speed* Time.fixedDeltaTime, vertical* Time.fixedDeltaTime);
+            mov_pos = new Vector2(horizontal * speed * Time.fixedDeltaTime, vertical * Time.fixedDeltaTime);
         }
         Vector2 next_position = new Vector2(prw_position.x + horizontal * Time.fixedDeltaTime * speed, prw_position.y + vertical * Time.fixedDeltaTime);
         if (remote_mov)
@@ -138,7 +153,7 @@ public class PlayerController_v3 : MonoBehaviour
         {
             prw_pos = rigidbody2d.position;
         }
-        rigidbody2d.MovePosition(next_position);        
+        rigidbody2d.MovePosition(next_position);
 
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -166,13 +181,13 @@ public class PlayerController_v3 : MonoBehaviour
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
-    {        
+    {
         //if (collision.collider.name == "Tilemap")
         //{
         //    in_flight = true;
         //}
         in_flight = true; // (lol?)
-        if(collision.collider.GetComponent<MovPlatform>() != null)
+        if (collision.collider.GetComponent<MovPlatform>() != null)
         {
             remote_mov = false;
         }
@@ -181,7 +196,7 @@ public class PlayerController_v3 : MonoBehaviour
     {
         foreach (ContactPoint2D point in collision.contacts)
         {
-                if (Mathf.Approximately(point.normal.y, -1.0F))
+            if (Mathf.Approximately(point.normal.y, -1.0F))
             {
                 Flight_hard_reset();
             }
@@ -189,7 +204,7 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name== "Spikes")
+        if (collision.name == "Spikes")
         {
             dead = true;
         }
@@ -204,7 +219,17 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void Flight_hard_reset()
     {
-        y_speed = jump_height/2;
+        y_speed = jump_height / 2;
+    }
+    public void Add_time(float x)
+    {
+        game_timer_offset -= x;
+    }
+    public void Add_Health(int x)
+    {
+        health += x;
+        health_is_full = (health==max_health);
+        Health_ctl.instance.UpdateHealth(health);
     }
 
 }

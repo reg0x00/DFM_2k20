@@ -90,9 +90,10 @@ public class PlayerController_v3 : MonoBehaviour
         if (!Mathf.Approximately(horizontal, 0.0f))
         {
             lookDirection.Set(horizontal, 0);
-            lookDirection.Normalize();
+            lookDirection.Normalize();         
         }
         animator.SetFloat("Move X", lookDirection.x);
+        animator.SetFloat("Move X_mag",Mathf.Abs(horizontal));
         if (speed_boost_time > 0)
         {
             speed_boost_time -= Time.fixedDeltaTime;

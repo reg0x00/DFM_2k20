@@ -194,6 +194,10 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.collider.name == "Spikes")
+        {
+            dead = true;
+        }
         foreach (ContactPoint2D point in collision.contacts)
         {
             if (Mathf.Approximately(point.normal.y, -1.0F))
@@ -204,10 +208,6 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "Spikes")
-        {
-            dead = true;
-        }
         CheckPoint ctl = collision.GetComponent<CheckPoint>();
         if (ctl != null)
         {

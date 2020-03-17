@@ -71,6 +71,11 @@ public class MovPlatform : MonoBehaviour
         //    ctl.Remote_mov_v2_s = mov;
         //}
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        remote_ctl = false;
+        controller = null;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerController_v3 ctl = collision.collider.GetComponent<PlayerController_v3>();

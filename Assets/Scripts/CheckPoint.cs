@@ -18,9 +18,4 @@ public class CheckPoint : MonoBehaviour
             animator.SetBool("Active", true);
         }
     }
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
 }

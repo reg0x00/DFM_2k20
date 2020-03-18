@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 89175050830431452}
   - component: {fileID: 2294513331088345878}
   - component: {fileID: 6355091340227107737}
+  - component: {fileID: 8029129710774939642}
   m_Layer: 0
   m_Name: NDZ
   m_TagString: NDZ
@@ -122,3 +123,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b3694caac7f314789b121df143ab1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8029129710774939642
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817649124055539990}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7eb6555f9300cd845b9b776504335f4d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -49,6 +49,7 @@ public class PlayerController_v3 : MonoBehaviour
     Animator animator;
     Rigidbody2D rigidbody2d;
     public Text Timer;
+    public Animator TimerAnimator;
     // Start is called before the first frame update
     void Start()
     {
@@ -225,6 +226,7 @@ public class PlayerController_v3 : MonoBehaviour
     public void Add_time(float x)
     {
         game_timer_offset -= x;
+        TimerAnimator.SetTrigger("AddTimeTrg");
     }
     public void Add_Health(int x)
     {

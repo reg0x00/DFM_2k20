@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1832469083984834364}
   - component: {fileID: 1832469083984834367}
   - component: {fileID: 1832469083984834366}
+  - component: {fileID: 3743482116229520605}
   m_Layer: 0
   m_Name: SpeedAdder
   m_TagString: Untagged
@@ -124,3 +125,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed_boost_set_value: 10
   speed_boost_duration: 10
+--- !u!95 &3743482116229520605
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832469083984834339}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7eb6555f9300cd845b9b776504335f4d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

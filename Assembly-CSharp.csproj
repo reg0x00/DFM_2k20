@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Health_ctl.cs" />
     <Compile Include="Assets\Scripts\MovBlock.cs" />
     <Compile Include="Assets\Scripts\MovPlatform.cs" />
+    <Compile Include="Assets\Scripts\NPC1.cs" />
     <Compile Include="Assets\Scripts\Old\CharacterController2D.cs" />
     <Compile Include="Assets\Scripts\Old\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Old\PlayerController_v2.cs" />
@@ -85,9 +86,6 @@
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>C:/doc/Fork/DFM_2k20/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/doc/Fork/DFM_2k20/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/doc/Fork/DFM_2k20/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
@@ -109,9 +107,6 @@
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
       <HintPath>C:/doc/Fork/DFM_2k20/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/doc/Fork/DFM_2k20/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/doc/Fork/DFM_2k20/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

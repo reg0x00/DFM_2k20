@@ -75,6 +75,7 @@ public class PlayerController_v3 : MonoBehaviour
         Timer.text = (last_FixedUpdate_time - game_timer_offset).ToString("F2");
         if (dead)
         {
+            speed_boost_time = 0;
             rigidbody2d.position = last_checkpoint;
             dead = false;
             Add_Health(-1);            
@@ -95,6 +96,7 @@ public class PlayerController_v3 : MonoBehaviour
         }
         animator.SetFloat("Move X", lookDirection.x);
         animator.SetFloat("Move X_mag",Mathf.Abs(horizontal));
+        animator.SetBool("Jump", in_flight);
         if (speed_boost_time > 0)
         {
             speed_boost_time -= Time.fixedDeltaTime;
@@ -105,6 +107,7 @@ public class PlayerController_v3 : MonoBehaviour
         }
         if (on_ladder && y_speed <= 0.0F)
         {
+            animator.SetBool("Jump", false);
             if (Input.GetButton("Jump"))
             {
                 y_speed += jump_height;

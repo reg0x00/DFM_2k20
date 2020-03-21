@@ -27,8 +27,7 @@ public class NPC1 : MonoBehaviour
             if (GameObject.FindGameObjectsWithTag(Collectibles_ctl.instance.ID_tag).Length == 0)
             {
                 //NPC1_txt_out.text = d2;
-                print_text(d2);
-                animator.SetBool("Pass",true);
+                print_text(d2);                
                 pass = true;
                 GetComponent<BoxCollider2D>().enabled = false;
             }
@@ -43,7 +42,6 @@ public class NPC1 : MonoBehaviour
         {
             //NPC1_txt_out.text = "";
             print_text("");
-            
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -77,6 +75,13 @@ public class NPC1 : MonoBehaviour
             else
             {
                 print_delay_timer -= Time.fixedDeltaTime;
+            }
+        }
+        else
+        {
+            if (pass)
+            {
+                animator.SetBool("Pass", true);
             }
         }
     }

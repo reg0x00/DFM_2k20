@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\SpeedAdder.cs" />
     <Compile Include="Assets\Scripts\TutorText.cs" />
     <Compile Include="Assets\Scripts\UI\MainUI.cs" />
+    <Compile Include="Assets\Scripts\UI\PauseUI.cs" />
     <Compile Include="Assets\Scripts\ladder.cs" />
     <Compile Include="Assets\Scripts\time_remover.cs" />
     <Reference Include="Unity.Timeline.Editor">

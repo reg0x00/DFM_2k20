@@ -28,6 +28,7 @@ public class PlayerController_v3 : MonoBehaviour
     bool high_priority; // for remote synchronization 
     public bool set_high_pri { set { high_priority = value; } }
     float game_timer_offset = 0.0F;
+    //public float set_player_game_timer_offset { set { game_timer_offset = value; } }
     float last_FixedUpdate_time;
     public float get_last_FU_time { get { return last_FixedUpdate_time; } }
     bool remote_next_frame_is_flip = false; // for high priority of charter
@@ -51,6 +52,10 @@ public class PlayerController_v3 : MonoBehaviour
     public Text Timer;
     public Animator TimerAnimator;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        game_timer_offset = Time.fixedTime;
+    }
     void Start()
     {
         //QualitySettings.vSyncCount = 0;

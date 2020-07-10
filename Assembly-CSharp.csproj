@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\ParallaxLayer.cs" />
     <Compile Include="Assets\Scripts\PlayerController_v3.cs" />
     <Compile Include="Assets\Scripts\RestoreHealth.cs" />
+    <Compile Include="Assets\Scripts\ScoreCnt.cs" />
     <Compile Include="Assets\Scripts\SpeedAdder.cs" />
     <Compile Include="Assets\Scripts\TutorText.cs" />
     <Compile Include="Assets\Scripts\UI\MainUI.cs" />

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -14,6 +13,7 @@ public class ScoreCnt : MonoBehaviour
     private BinaryFormatter formatter;
     private static string LastUpdName;
     private static string LastUpdScene;
+    const int RowLimitTnScoreTable = 9;
     public string GetSortedResultsByScene(string scene)
     {
         string res="";
@@ -49,11 +49,18 @@ public class ScoreCnt : MonoBehaviour
         }
         var ScoreList = tmpdict.ToList();
         ScoreList.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
+        int RowLimiter = RowLimitTnScoreTable;
         foreach (var item in ScoreList)
         {
+            
             res+=item.Key+" : ";
             res += item.Value.Equals(PlusMaxValue) ? EmptyScoreVal : item.Value.ToString("F2");
             res +="\n";
+            RowLimiter -= 1;
+            if (RowLimiter <= 0)
+            {
+                break;
+            }
         }
         return res;
     }

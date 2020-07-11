@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Collectibles.cs" />
     <Compile Include="Assets\Scripts\Collectibles_ctl.cs" />
+    <Compile Include="Assets\Scripts\Final.cs" />
     <Compile Include="Assets\Scripts\Health_ctl.cs" />
     <Compile Include="Assets\Scripts\MovBlock.cs" />
     <Compile Include="Assets\Scripts\MovPlatform.cs" />

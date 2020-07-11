@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class MainUI : MonoBehaviour
 {
@@ -11,10 +12,10 @@ public class MainUI : MonoBehaviour
     public GameObject EnterNameCnv;
     public GameObject EnterNameNext;
     public GameObject CollisionNameCanv;
+    public GameObject ResultsCanv;
     public Text InputField;
     ScoreCnt ScoreTable;
     private string SelectedScene;
-    private string Uname;
     private void Awake()
     {
         ScoreTable = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
@@ -25,18 +26,29 @@ public class MainUI : MonoBehaviour
         if (LvlCnv.activeSelf && Input.GetKeyDown("escape"))
         {
             OnBackToMnuClick();
+            return;
         }
         if (!MainCnv.activeSelf && !LvlCnv.activeSelf && EnterNameCnv.activeSelf && Input.GetKeyDown("escape"))
         {
             BackToLvls();
+            return;
         }
         if (EnterNameCnv.activeSelf)
         {
             GetInputFromEnterName();
+            return;
         }
         if(CollisionNameCanv.activeSelf && Input.GetKeyDown("escape"))
         {
             BackInNameFromCollisionWarn();
+            return;
+        }
+        if(ResultsCanv.activeSelf && Input.GetKeyDown("escape"))
+        {
+            LvlCnv.SetActive(true);
+            ResultsCanv.SetActive(false);
+            ResultsCanv.GetComponentInChildren<Image>().GetComponentInChildren<Text>().text = "";
+            return;
         }
     }
     private void BackToLvls()
@@ -63,10 +75,10 @@ public class MainUI : MonoBehaviour
     }
     public void CheckName()
     {
-        Uname = InputField.text;
-        if (!ScoreTable.HaveUname(Uname, SelectedScene))
+        ScoreTable.SetActiveKeys(InputField.text, SelectedScene);
+        if (!ScoreTable.HaveUname(InputField.text, SelectedScene))
         {
-            ScoreTable.AddName(Uname, SelectedScene);            
+            ScoreTable.AddName(InputField.text, SelectedScene);            
             LoadLvl();
         }
         else
@@ -100,6 +112,7 @@ public class MainUI : MonoBehaviour
         EnterNameCnv.SetActive(false);
         EnterNameNext.SetActive(false);
         CollisionNameCanv.SetActive(false);
+        ResultsCanv.SetActive(false);
     }
     public void GetInputFromEnterName()
     {
@@ -111,5 +124,11 @@ public class MainUI : MonoBehaviour
         {
             EnterNameNext.SetActive(false);
         }
+    }
+    public void DisplayScoresTable(string scene)
+    {      
+        ResultsCanv.GetComponentInChildren<Image>().GetComponentInChildren<Text>().text = ScoreTable.GetSortedResultsByScene(scene);
+        LvlCnv.SetActive(false);
+        ResultsCanv.SetActive(true);
     }
 }

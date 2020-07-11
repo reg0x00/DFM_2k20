@@ -33,6 +33,8 @@ public class PlayerController_v3 : MonoBehaviour
     public float get_last_FU_time { get { return last_FixedUpdate_time; } }
     bool remote_next_frame_is_flip = false; // for high priority of charter
     public bool remote_NF_flip { set { remote_next_frame_is_flip = value; } }
+    private float TimePlayed=0.0f;
+    public float GetTimePlayed { get { return TimePlayed; } }
     Vector2 last_checkpoint;
     int last_checkpoint_priority;
     bool dead = false;
@@ -77,7 +79,8 @@ public class PlayerController_v3 : MonoBehaviour
     private void FixedUpdate()
     {
         last_FixedUpdate_time = Time.fixedTime;
-        Timer.text = (last_FixedUpdate_time - game_timer_offset).ToString("F2");
+        TimePlayed= (last_FixedUpdate_time - game_timer_offset);
+        Timer.text = TimePlayed.ToString("F2");
         if (dead)
         {
             speed_boost_time = 0;

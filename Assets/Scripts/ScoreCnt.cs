@@ -17,8 +17,12 @@ public class ScoreCnt : MonoBehaviour
     public string GetSortedResultsByScene(string scene)
     {
         string res="";
-        const float EmptyHolder = -0.1f;
+        const float EmptyHolder = -0.1f; // mix str and float in one dictionary is an bad idea(((((((((((((((
         Dictionary<string, float> tmpdict = new Dictionary<string, float>();
+        if (!scores.ContainsKey(scene))
+        {
+            return "";
+        }
         foreach (var item in scores[scene])
         {
             if (item.Value.Equals(EmptyScoreVal))
@@ -30,12 +34,25 @@ public class ScoreCnt : MonoBehaviour
                 tmpdict.Add(item.Key, float.Parse(item.Value));
             }
         }
+        float PlusMaxValue = tmpdict.Values.Max()+1.0f;
+        HashSet < string > EmptyKeys= new HashSet<string>();
+        foreach (var item in tmpdict)
+        {
+            if (item.Value.Equals(EmptyHolder))
+            {
+                EmptyKeys.Add(item.Key);
+            }
+        }
+        foreach (var item in EmptyKeys)
+        {
+            tmpdict[item] = PlusMaxValue;
+        }
         var ScoreList = tmpdict.ToList();
         ScoreList.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
         foreach (var item in ScoreList)
         {
             res+=item.Key+" : ";
-            res += item.Value.Equals(EmptyHolder) ? EmptyScoreVal : item.Value.ToString("F2");
+            res += item.Value.Equals(PlusMaxValue) ? EmptyScoreVal : item.Value.ToString("F2");
             res +="\n";
         }
         return res;

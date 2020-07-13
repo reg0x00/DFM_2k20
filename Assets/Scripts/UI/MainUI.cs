@@ -28,10 +28,18 @@ public class MainUI : MonoBehaviour
             OnBackToMnuClick();
             return;
         }
-        if (!MainCnv.activeSelf && !LvlCnv.activeSelf && EnterNameCnv.activeSelf && Input.GetKeyDown("escape"))
+        if (!MainCnv.activeSelf && !LvlCnv.activeSelf && EnterNameCnv.activeSelf)
         {
-            BackToLvls();
-            return;
+            if (Input.GetKeyDown("escape"))
+            {
+                BackToLvls();
+                return;
+            }
+            if (EnterNameNext.activeSelf && Input.GetButtonDown("Submit"))
+            {
+                CheckName();
+                return;
+            }
         }
         if (EnterNameCnv.activeSelf)
         {

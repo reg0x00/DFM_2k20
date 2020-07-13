@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d60c901045d7449854472791e8e7b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PathToSave: /Saves/ScoreTables.bin
+  PathToSave: /Saves/ScoreTablesHolder.bin
   EmptyScoreVal: "\u043D\u0435\u0443\u0434."

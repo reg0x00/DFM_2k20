@@ -8,7 +8,8 @@ public class ScoreCnt : MonoBehaviour
 {
     public string PathToSave;//= "/Saves/ScoreTables.bin"    
     public string EmptyScoreVal;// = "неуд.";
-    Dictionary<string, Dictionary<string, string>> scores;
+    private const float EmptyFieldFiller = -1.0f;
+    Dictionary<string, Dictionary<string, float>> scores;
     private string SavePath;
     private BinaryFormatter formatter;
     private static string LastUpdName;
@@ -17,35 +18,22 @@ public class ScoreCnt : MonoBehaviour
     public string GetSortedResultsByScene(string scene)
     {
         string res="";
-        const float EmptyHolder = -0.1f; // mix str and float in one dictionary is an bad idea(((((((((((((((
         Dictionary<string, float> tmpdict = new Dictionary<string, float>();
         if (!scores.ContainsKey(scene))
         {
             return "";
         }
+        float PlusMaxValue = scores[scene].Values.Max()+1.0f;
         foreach (var item in scores[scene])
         {
-            if (item.Value.Equals(EmptyScoreVal))
+            if (item.Value.Equals(EmptyFieldFiller))
             {
-                tmpdict.Add(item.Key, EmptyHolder);
+                tmpdict.Add(item.Key, PlusMaxValue);
             }
             else
             {
-                tmpdict.Add(item.Key, float.Parse(item.Value));
+                tmpdict.Add(item.Key, item.Value);
             }
-        }
-        float PlusMaxValue = tmpdict.Values.Max()+1.0f;
-        HashSet < string > EmptyKeys= new HashSet<string>();
-        foreach (var item in tmpdict)
-        {
-            if (item.Value.Equals(EmptyHolder))
-            {
-                EmptyKeys.Add(item.Key);
-            }
-        }
-        foreach (var item in EmptyKeys)
-        {
-            tmpdict[item] = PlusMaxValue;
         }
         var ScoreList = tmpdict.ToList();
         ScoreList.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
@@ -74,20 +62,20 @@ public class ScoreCnt : MonoBehaviour
         UpdateDict();
         if (!scores.ContainsKey(SceneName))
         {
-            scores.Add(SceneName, new Dictionary<string, string>());
+            scores.Add(SceneName, new Dictionary<string, float>());
         }
         return scores[SceneName].ContainsKey(uname);
     }
     public void AddName(string uname, string SceneName)
     {
-        scores[SceneName].Add(uname, EmptyScoreVal);
+        scores[SceneName].Add(uname, EmptyFieldFiller);
         SaveDictToFile();
     }
     public void UpdateValueIfGreatherViaInnerKeys(float score)
     {        
-          if (scores[LastUpdScene][LastUpdName].Equals(EmptyScoreVal) || float.Parse(scores[LastUpdScene][LastUpdName]).CompareTo(score) > 0)
+           if (scores[LastUpdScene][LastUpdName].Equals(EmptyFieldFiller) || (scores[LastUpdScene][LastUpdName].CompareTo(score) > 0))
         {
-            scores[LastUpdScene][LastUpdName] = score.ToString();
+            scores[LastUpdScene][LastUpdName] = score;
             SaveDictToFile();
         }
     }
@@ -102,11 +90,11 @@ public class ScoreCnt : MonoBehaviour
         Stream stream = new FileStream(SavePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None);
         if (stream.Length != 0)
         {
-            scores = (Dictionary<string, Dictionary<string, string>>)formatter.Deserialize(stream);
+            scores = (Dictionary<string, Dictionary<string, float>>)formatter.Deserialize(stream);
         }
         else
         {
-            scores = new Dictionary<string, Dictionary<string, string>>();
+            scores = new Dictionary<string, Dictionary<string, float>>();
         }
         stream.Close();
     }

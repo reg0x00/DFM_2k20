@@ -87,6 +87,7 @@ public class ScoreCnt : MonoBehaviour
     }
     private void UpdateDict()
     {
+        Directory.CreateDirectory(SavePath.Substring(0, SavePath.LastIndexOf('/')));
         Stream stream = new FileStream(SavePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None);
         if (stream.Length != 0)
         {

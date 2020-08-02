@@ -105,6 +105,8 @@ public class PlayerController_v3 : MonoBehaviour
         animator.SetFloat("Move X", lookDirection.x);
         animator.SetFloat("Move X_mag",Mathf.Abs(horizontal));
         animator.SetBool("Jump", in_flight);
+        animator.SetBool("On_ladder", on_ladder);
+        animator.SetFloat("Move_Y", Input.GetAxis("Vertical"));
         if (speed_boost_time > 0)
         {
             speed_boost_time -= Time.fixedDeltaTime;

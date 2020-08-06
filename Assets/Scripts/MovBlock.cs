@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,14 +59,14 @@ public class MovBlock : MonoBehaviour
             rigidbody2d.isKinematic = false;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        PlayerController_v3 ctl = collision.GetComponent<PlayerController_v3>();
-        if (ctl != null)
-        {
-            // some animation
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    PlayerController_v3 ctl = collision.GetComponent<PlayerController_v3>();
+    //    if (ctl != null)
+    //    {
+    //        // some animation
+    //    }
+    //}
     private void OnTriggerStay2D(Collider2D collision)
     {
         PlayerController_v3 ctl = collision.GetComponent<PlayerController_v3>();
@@ -74,6 +75,7 @@ public class MovBlock : MonoBehaviour
             if (Input.GetKey("e"))
             {
                 right_dir = false;
+                ctl.set_drag_dir= rigidbody2d.position.x - ctl.GetComponent<Rigidbody2D>().position.x;
                 ctl.drag_dbf_change = Character_Speed_Debuff;
                 ctl.drag_status_set = true;
                 float amplify = 1;
@@ -128,7 +130,7 @@ public class MovBlock : MonoBehaviour
                 rigidbody2d.velocity = new Vector2(0, 0);
                 apply_post_force = right_dir;
             }
-            
+            ctl.drag_status_set = false;
         }
     }
 }

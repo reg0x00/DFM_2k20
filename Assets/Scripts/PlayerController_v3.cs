@@ -42,6 +42,8 @@ public class PlayerController_v3 : MonoBehaviour
     public int max_health;
     bool health_is_full;
     public bool check_max_hp_status { get { return health_is_full; } }
+    private float drag_dir = 0;
+    public float set_drag_dir { set { drag_dir = value; } }
     bool drag = false;
     public bool drag_status_set { set { drag = value; } }
     float drag_dbf;
@@ -107,6 +109,9 @@ public class PlayerController_v3 : MonoBehaviour
         animator.SetBool("Jump", in_flight);
         animator.SetBool("On_ladder", on_ladder);
         animator.SetFloat("Move_Y", Input.GetAxis("Vertical"));
+        animator.SetBool("Is_dragging", drag);
+        animator.SetFloat("Drag_dir", drag_dir);
+        Debug.Log(drag);
         if (speed_boost_time > 0)
         {
             speed_boost_time -= Time.fixedDeltaTime;

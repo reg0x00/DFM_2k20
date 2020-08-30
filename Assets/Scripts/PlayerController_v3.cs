@@ -18,6 +18,7 @@ public class PlayerController_v3 : MonoBehaviour
     Vector2 prw_pos = new Vector2(0, 0);
     public float y_speed_set { set { y_speed = value; } }
     bool in_flight = true;
+    public bool get_flight_status { get { return in_flight; } }
     bool in_flight_last_frame_processed = true; // in case, when several colliders involved
     bool ladder_stun = false;
     public bool ladder_stun_setter { set { ladder_stun = value; } }
@@ -104,6 +105,8 @@ public class PlayerController_v3 : MonoBehaviour
             lookDirection.Set(horizontal, 0);
             lookDirection.Normalize();         
         }
+        if (in_flight)
+            drag = false;
         animator.SetFloat("Move X", lookDirection.x);
         animator.SetFloat("Move X_mag",Mathf.Abs(horizontal));
         animator.SetBool("Jump", in_flight);
@@ -111,7 +114,6 @@ public class PlayerController_v3 : MonoBehaviour
         animator.SetFloat("Move_Y", Input.GetAxis("Vertical"));
         animator.SetBool("Is_dragging", drag);
         animator.SetFloat("Drag_dir", drag_dir);
-        Debug.Log(drag);
         if (speed_boost_time > 0)
         {
             speed_boost_time -= Time.fixedDeltaTime;

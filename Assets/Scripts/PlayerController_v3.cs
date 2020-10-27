@@ -51,6 +51,8 @@ public class PlayerController_v3 : MonoBehaviour
     public float drag_dbf_change { set { drag_dbf = value; } }
     public Vector2 mov_pos;
     public Vector2 char_mov { get { return mov_pos; } }  // w/o prw_pos
+    public int Fly_animation_cooldown_frames = 25; // default : 50 FUPS
+    private int Fly_animation_cooldown_frames_cnt;
     Vector2 lookDirection = new Vector2(1, 0);
     Animator animator;
     Rigidbody2D rigidbody2d;
@@ -109,11 +111,26 @@ public class PlayerController_v3 : MonoBehaviour
             drag = false;
         animator.SetFloat("Move X", lookDirection.x);
         animator.SetFloat("Move X_mag",Mathf.Abs(horizontal));
-        animator.SetBool("Jump", in_flight);
         animator.SetBool("On_ladder", on_ladder);
         animator.SetFloat("Move_Y", Input.GetAxis("Vertical"));
         animator.SetBool("Is_dragging", drag);
         animator.SetFloat("Drag_dir", drag_dir);
+        if (!in_flight && Input.GetButton("Jump")) // fix animation at holding jump btn
+        {
+            if (Fly_animation_cooldown_frames_cnt == 0)
+            {
+                animator.SetBool("Jump", in_flight);
+            }
+            else
+            {
+                Fly_animation_cooldown_frames_cnt--;
+            }
+        }
+        else
+        {
+            animator.SetBool("Jump", in_flight);
+            Fly_animation_cooldown_frames_cnt = Fly_animation_cooldown_frames;
+        }
         if (speed_boost_time > 0)
         {
             speed_boost_time -= Time.fixedDeltaTime;
@@ -121,7 +138,7 @@ public class PlayerController_v3 : MonoBehaviour
         else if (default_speed != speed)
         {
             speed = default_speed;
-        }
+        }        
         if (on_ladder && y_speed <= 0.0F)
         {
             animator.SetBool("Jump", false);

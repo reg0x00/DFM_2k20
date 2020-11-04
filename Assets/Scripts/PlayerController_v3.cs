@@ -94,9 +94,10 @@ public class PlayerController_v3 : MonoBehaviour
             Add_Health(-1);            
             return;
         }
-        in_flight_last_frame_processed = true;
-        if (in_flight && rigidbody2d.position.y == prw_pos.y && Mathf.Approximately(rigidbody2d.position.y, 0))
+        in_flight_last_frame_processed = true;        
+        if (in_flight && rigidbody2d.position.y == prw_pos.y && Mathf.Approximately(rigidbody2d.position.y, 0)) //its not possible
         {
+            Debug.Log(rigidbody2d.position.y == prw_pos.y);
             Flight_hard_reset();
         }
         float horizontal = Input.GetAxis("Horizontal");
@@ -202,9 +203,13 @@ public class PlayerController_v3 : MonoBehaviour
             in_flight = true;
             in_flight_last_frame_processed = false;
         }
-        //in_flight = true;
+        //in_flight = true;       
         foreach (ContactPoint2D point in collision.contacts)
         {
+            if (Mathf.Approximately(point.normal.y, -1.0F))
+            {
+                Flight_hard_reset();
+            }
             if (Mathf.Approximately(point.normal.y, 1.0F))
             {
                 if (collision.collider.GetComponent<MovPlatform>() != null)
@@ -258,7 +263,8 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void Flight_hard_reset()
     {
-        y_speed = jump_height / 2;
+        //y_speed = jump_height / 2;
+        y_speed /= 1.1f;
     }
     public void Add_time(float x)
     {

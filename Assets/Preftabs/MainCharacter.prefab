@@ -107,6 +107,7 @@ MonoBehaviour:
   Fly_animation_cooldown_frames: 25
   Timer: {fileID: 0}
   TimerAnimator: {fileID: 0}
+  HealthAnimator: {fileID: 0}
 --- !u!50 &3825167838179313568
 Rigidbody2D:
   serializedVersion: 4

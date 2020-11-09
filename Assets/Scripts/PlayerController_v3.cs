@@ -58,6 +58,7 @@ public class PlayerController_v3 : MonoBehaviour
     Rigidbody2D rigidbody2d;
     public Text Timer;
     public Animator TimerAnimator;
+    public Animator HealthAnimator;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -273,6 +274,10 @@ public class PlayerController_v3 : MonoBehaviour
     }
     public void Add_Health(int x)
     {
+        if (x < 0)
+        {
+            HealthAnimator.SetTrigger("Removing_health");
+        }
         health += x;
         health_is_full = (health==max_health);
         Health_ctl.instance.UpdateHealth(health);

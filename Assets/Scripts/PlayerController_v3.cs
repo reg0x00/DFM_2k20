@@ -18,6 +18,7 @@ public class PlayerController_v3 : MonoBehaviour
     Vector2 prw_pos = new Vector2(0, 0);
     public float y_speed_set { set { y_speed = value; } }
     bool in_flight = true;
+    public bool get_flight_status { get { return in_flight; } }
     bool in_flight_last_frame_processed = true; // in case, when several colliders involved
     bool ladder_stun = false;
     public bool ladder_stun_setter { set { ladder_stun = value; } }
@@ -42,17 +43,22 @@ public class PlayerController_v3 : MonoBehaviour
     public int max_health;
     bool health_is_full;
     public bool check_max_hp_status { get { return health_is_full; } }
+    private float drag_dir = 0;
+    public float set_drag_dir { set { drag_dir = value; } }
     bool drag = false;
     public bool drag_status_set { set { drag = value; } }
     float drag_dbf;
     public float drag_dbf_change { set { drag_dbf = value; } }
     public Vector2 mov_pos;
     public Vector2 char_mov { get { return mov_pos; } }  // w/o prw_pos
+    public int Fly_animation_cooldown_frames = 25; // default : 50 FUPS
+    private int Fly_animation_cooldown_frames_cnt;
     Vector2 lookDirection = new Vector2(1, 0);
     Animator animator;
     Rigidbody2D rigidbody2d;
     public Text Timer;
     public Animator TimerAnimator;
+    public Animator HealthAnimator;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -89,9 +95,10 @@ public class PlayerController_v3 : MonoBehaviour
             Add_Health(-1);            
             return;
         }
-        in_flight_last_frame_processed = true;
-        if (in_flight && rigidbody2d.position.y == prw_pos.y && Mathf.Approximately(rigidbody2d.position.y, 0))
+        in_flight_last_frame_processed = true;        
+        if (in_flight && rigidbody2d.position.y == prw_pos.y && Mathf.Approximately(rigidbody2d.position.y, 0)) //its not possible
         {
+            Debug.Log(rigidbody2d.position.y == prw_pos.y);
             Flight_hard_reset();
         }
         float horizontal = Input.GetAxis("Horizontal");
@@ -102,9 +109,30 @@ public class PlayerController_v3 : MonoBehaviour
             lookDirection.Set(horizontal, 0);
             lookDirection.Normalize();         
         }
+        if (in_flight)
+            drag = false;
         animator.SetFloat("Move X", lookDirection.x);
         animator.SetFloat("Move X_mag",Mathf.Abs(horizontal));
-        animator.SetBool("Jump", in_flight);
+        animator.SetBool("On_ladder", on_ladder);
+        animator.SetFloat("Move_Y", Input.GetAxis("Vertical"));
+        animator.SetBool("Is_dragging", drag);
+        animator.SetFloat("Drag_dir", drag_dir);
+        if (!in_flight && Input.GetButton("Jump")) // fix animation at holding jump btn
+        {
+            if (Fly_animation_cooldown_frames_cnt == 0)
+            {
+                animator.SetBool("Jump", in_flight);
+            }
+            else
+            {
+                Fly_animation_cooldown_frames_cnt--;
+            }
+        }
+        else
+        {
+            animator.SetBool("Jump", in_flight);
+            Fly_animation_cooldown_frames_cnt = Fly_animation_cooldown_frames;
+        }
         if (speed_boost_time > 0)
         {
             speed_boost_time -= Time.fixedDeltaTime;
@@ -112,7 +140,7 @@ public class PlayerController_v3 : MonoBehaviour
         else if (default_speed != speed)
         {
             speed = default_speed;
-        }
+        }        
         if (on_ladder && y_speed <= 0.0F)
         {
             animator.SetBool("Jump", false);
@@ -176,9 +204,13 @@ public class PlayerController_v3 : MonoBehaviour
             in_flight = true;
             in_flight_last_frame_processed = false;
         }
-        //in_flight = true;
+        //in_flight = true;       
         foreach (ContactPoint2D point in collision.contacts)
         {
+            if (Mathf.Approximately(point.normal.y, -1.0F))
+            {
+                Flight_hard_reset();
+            }
             if (Mathf.Approximately(point.normal.y, 1.0F))
             {
                 if (collision.collider.GetComponent<MovPlatform>() != null)
@@ -232,7 +264,8 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void Flight_hard_reset()
     {
-        y_speed = jump_height / 2;
+        //y_speed = jump_height / 2;
+        y_speed /= 1.1f;
     }
     public void Add_time(float x)
     {
@@ -241,6 +274,10 @@ public class PlayerController_v3 : MonoBehaviour
     }
     public void Add_Health(int x)
     {
+        if (x < 0)
+        {
+            HealthAnimator.SetTrigger("Removing_health");
+        }
         health += x;
         health_is_full = (health==max_health);
         Health_ctl.instance.UpdateHealth(health);

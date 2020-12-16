@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MovBlock : MonoBehaviour
 {
+    private const KeyCode KeyToMove = KeyCode.LeftShift;
     public float Character_Speed_Debuff = 0.3F;
     bool lock_is_set = true;
     const float time_to_relax = 0.5F;
@@ -58,22 +60,24 @@ public class MovBlock : MonoBehaviour
             rigidbody2d.isKinematic = false;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        PlayerController_v3 ctl = collision.GetComponent<PlayerController_v3>();
-        if (ctl != null)
-        {
-            // some animation
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    PlayerController_v3 ctl = collision.GetComponent<PlayerController_v3>();
+    //    if (ctl != null)
+    //    {
+    //        // some animation
+    //    }
+    //}
     private void OnTriggerStay2D(Collider2D collision)
     {
         PlayerController_v3 ctl = collision.GetComponent<PlayerController_v3>();
+        
         if (ctl != null)
         {
-            if (Input.GetKey("e"))
+            if (Input.GetKey(KeyToMove))
             {
                 right_dir = false;
+                ctl.set_drag_dir= rigidbody2d.position.x - ctl.GetComponent<Rigidbody2D>().position.x;
                 ctl.drag_dbf_change = Character_Speed_Debuff;
                 ctl.drag_status_set = true;
                 float amplify = 1;
@@ -109,8 +113,15 @@ public class MovBlock : MonoBehaviour
             {
                 ctl.drag_status_set = false;
             }
-            lock_is_set = !Input.GetKey("e");
-            if (!Input.GetKey("e"))
+            lock_is_set = !Input.GetKey(KeyToMove);
+            if(!lock_is_set)
+            lock_is_set = ctl.get_flight_status;
+            if((collision.attachedRigidbody.position.y - rigidbody2d.position.y) > 1.0)
+            {
+                ctl.drag_status_set = false;
+                lock_is_set = true;
+            }
+            if (!Input.GetKey(KeyToMove))
             {                
                 rigidbody2d.velocity = new Vector2(0, 0);
             }
@@ -123,12 +134,12 @@ public class MovBlock : MonoBehaviour
         if (ctl != null)
         {
             lock_is_set = true;
-            if (Input.GetKey("e"))
+            if (Input.GetKey(KeyToMove))
             {
                 rigidbody2d.velocity = new Vector2(0, 0);
                 apply_post_force = right_dir;
             }
-            
+            ctl.drag_status_set = false;
         }
     }
 }

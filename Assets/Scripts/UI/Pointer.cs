@@ -1,20 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Pointer : MonoBehaviour
 {
-    public string[] OrderedTargets = new string[1];
     string CurrentTarget;
     Vector2 Target;
     RectTransform PointerRectTrs;
+    Image PointerImg;
+    private Stack<string> Targets=new Stack<string>();
     // Start is called before the first frame update
     void Start()
     {
+        GameObject ColCtl = GameObject.Find("Collectibles");
+        Collectibles_ctl Collectibles_ctl_Targets = ColCtl.GetComponent<Collectibles_ctl>();
         PointerRectTrs = transform.Find("Pointer").GetComponent<RectTransform>();
-        if (OrderedTargets.Length != 0)
+        PointerImg = transform.Find("Pointer").GetComponent<Image>();
+        if (Collectibles_ctl_Targets.CollectOrder.Length != 0)
         {
-            CurrentTarget = OrderedTargets[0];
+            for(int i = Collectibles_ctl_Targets.CollectOrder.Length - 1; i >= 0; i--)
+            {
+                Targets.Push(Collectibles_ctl_Targets.CollectOrder[i]);
+            }
+            CurrentTarget = Targets.Pop();
             Target = GameObject.Find(CurrentTarget).transform.position;            
         }
     }
@@ -24,14 +32,24 @@ public class Pointer : MonoBehaviour
     {
         if(GameObject.Find(CurrentTarget) == null) // active target complete
         {
-            if(CurrentTarget== OrderedTargets[OrderedTargets.Length - 1]) // all targets complete
+            if(Targets.Count==0) // all targets complete
             {
                 return;
             }
-            CurrentTarget = OrderedTargets[0];
+            CurrentTarget = Targets.Pop();
             Target = GameObject.Find(CurrentTarget).transform.position;
         }
         //bool InWindow= 
+        Plane[] planes;
+        planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        if (GeometryUtility.TestPlanesAABB(planes, GameObject.Find(CurrentTarget).GetComponent<SpriteRenderer>().bounds))
+        {
+            PointerImg.enabled = false;
+        }
+        else
+        {
+            PointerImg.enabled = true;
+        }
         Vector2 NowCameraPosition = Camera.main.transform.position;
         Vector2 NormDir = (Target - NowCameraPosition).normalized;
         double AngelToTarget = Mathf.Atan2(NormDir.y, NormDir.x) * 180.0 / Mathf.PI; // -180<x<180

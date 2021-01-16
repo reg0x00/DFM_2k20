@@ -9486,8 +9486,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5050391ff71a34f9182e7fb019f0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OrderedTargets:
-  - ID
 --- !u!1 &719665321
 GameObject:
   m_ObjectHideFlags: 0
@@ -75473,6 +75471,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[0]
+      value: NDZ
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[1]
+      value: NDZ (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[2]
+      value: NDZ (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[3]
+      value: Origami
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[4]
+      value: Origami (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[5]
+      value: Origami (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[6]
+      value: Origami (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[7]
+      value: Origami (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[8]
+      value: Origami (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[9]
+      value: Origami (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[10]
+      value: Girlanda
+      objectReference: {fileID: 0}
     - target: {fileID: 4720511426692742086, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}
       propertyPath: m_LocalPosition.x

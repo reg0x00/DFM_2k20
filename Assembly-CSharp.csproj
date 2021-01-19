@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\ScoreCnt.cs" />
     <Compile Include="Assets\Scripts\SpeedAdder.cs" />
     <Compile Include="Assets\Scripts\TutorText.cs" />
+    <Compile Include="Assets\Scripts\UI\ControlPointCtl.cs" />
     <Compile Include="Assets\Scripts\UI\MainUI.cs" />
     <Compile Include="Assets\Scripts\UI\PauseUI.cs" />
     <Compile Include="Assets\Scripts\UI\Pointer.cs" />

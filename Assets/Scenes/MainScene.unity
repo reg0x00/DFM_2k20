@@ -76437,6 +76437,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}
+      propertyPath: CollectTagsToTrack.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
       propertyPath: CollectOrder.Array.data[0]
       value: NDZ
       objectReference: {fileID: 0}
@@ -76489,6 +76494,26 @@ PrefabInstance:
         type: 3}
       propertyPath: CollectOrder.Array.data[10]
       value: Girlanda
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectTagsToTrack.Array.data[0]
+      value: NDZ
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectTagsToTrack.Array.data[1]
+      value: Ori
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectTagsToTrack.Array.data[2]
+      value: Garl
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectTagsToTrack.Array.data[3]
+      value: ID
       objectReference: {fileID: 0}
     - target: {fileID: 4720511425622666378, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}

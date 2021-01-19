@@ -20,6 +20,7 @@ public class Collectibles_ctl : MonoBehaviour
     //public Image garl;
     public Image ID;
     public string[] CollectOrder;
+    public string[] CollectTagsToTrack;
     public int[] CollectNumber;
     int max_NDZ;
     int max_orig;

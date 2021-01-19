@@ -5,8 +5,11 @@ using UnityEngine.UI;
 public class Pointer : MonoBehaviour
 {
     string CurrentTarget;
+    string[] Tags;
+    int TaggedObjCount;
     Vector2 Target;
     RectTransform PointerRectTrs;
+    Bounds TargetBounds;
     Image PointerImg;
     private Stack<string> Targets=new Stack<string>();
     // Start is called before the first frame update
@@ -18,19 +21,22 @@ public class Pointer : MonoBehaviour
         PointerImg = transform.Find("Pointer").GetComponent<Image>();
         if (Collectibles_ctl_Targets.CollectOrder.Length != 0)
         {
-            for(int i = Collectibles_ctl_Targets.CollectOrder.Length - 1; i >= 0; i--)
+            Tags = Collectibles_ctl_Targets.CollectTagsToTrack;
+            TaggedObjCount= CountTaggedObj();
+            for (int i = Collectibles_ctl_Targets.CollectOrder.Length - 1; i >= 0; i--)
             {
                 Targets.Push(Collectibles_ctl_Targets.CollectOrder[i]);
             }
             CurrentTarget = Targets.Pop();
-            Target = GameObject.Find(CurrentTarget).transform.position;            
+            Target = GameObject.Find(CurrentTarget).transform.position;
+            TargetBounds = GameObject.Find(CurrentTarget).GetComponent<SpriteRenderer>().bounds;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.Find(CurrentTarget) == null) // active target complete
+        if(TaggedObjCount!= CountTaggedObj()) // active target complete
         {
             if(Targets.Count==0) // all targets complete
             {
@@ -38,11 +44,13 @@ public class Pointer : MonoBehaviour
             }
             CurrentTarget = Targets.Pop();
             Target = GameObject.Find(CurrentTarget).transform.position;
+            TargetBounds = GameObject.Find(CurrentTarget).GetComponent<SpriteRenderer>().bounds;
+            TaggedObjCount = CountTaggedObj();
         }
         //bool InWindow= 
         Plane[] planes;
         planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
-        if (GeometryUtility.TestPlanesAABB(planes, GameObject.Find(CurrentTarget).GetComponent<SpriteRenderer>().bounds))
+        if (GeometryUtility.TestPlanesAABB(planes, TargetBounds))
         {
             PointerImg.enabled = false;
         }
@@ -56,5 +64,14 @@ public class Pointer : MonoBehaviour
         PointerRectTrs.localEulerAngles= new Vector3(0, 0, (float)AngelToTarget);
         PointerRectTrs.anchoredPosition = NormDir*300;
         
+    }
+    private int CountTaggedObj()
+    {
+        int cnt = 0;
+        foreach(string i in Tags)
+        {
+            cnt += GameObject.FindGameObjectsWithTag(i).Length;
+        }
+        return cnt;
     }
 }

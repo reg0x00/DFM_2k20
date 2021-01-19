@@ -75484,22 +75484,22 @@ PrefabInstance:
     - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}
       propertyPath: CollectOrder.Array.data[1]
-      value: NDZ (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
-        type: 3}
-      propertyPath: CollectOrder.Array.data[2]
       value: NDZ (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}
+      propertyPath: CollectOrder.Array.data[2]
+      value: NDZ (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
       propertyPath: CollectOrder.Array.data[3]
-      value: Origami
+      value: Origami (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}
       propertyPath: CollectOrder.Array.data[4]
-      value: Origami (1)
+      value: Origami (6)
       objectReference: {fileID: 0}
     - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}
@@ -75509,22 +75509,22 @@ PrefabInstance:
     - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}
       propertyPath: CollectOrder.Array.data[6]
-      value: Origami (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
-        type: 3}
-      propertyPath: CollectOrder.Array.data[7]
-      value: Origami (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
-        type: 3}
-      propertyPath: CollectOrder.Array.data[8]
       value: Origami (5)
       objectReference: {fileID: 0}
     - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}
+      propertyPath: CollectOrder.Array.data[7]
+      value: Origami
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: CollectOrder.Array.data[8]
+      value: Origami (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
       propertyPath: CollectOrder.Array.data[9]
-      value: Origami (6)
+      value: Origami (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}

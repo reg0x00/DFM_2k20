@@ -15,6 +15,11 @@ public class PauseUI : MonoBehaviour
     {
         ResetAllWindows();
         ScoreTable = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
+
+
+
+        GameObject ResTableCnv = GameObject.Find("Entry");
+        GameObject.Instantiate(ResTableCnv).transform.SetParent(GameObject.Find("Content").transform);
     }
     private void Update()
     {
@@ -51,6 +56,7 @@ public class PauseUI : MonoBehaviour
         BkgCnv.SetActive(false);
         FinalCnv.SetActive(false);
     }
+
     public void FinalViaCollider(Collider2D collision)
     {
         Time.timeScale = 0;

@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Obsolete\CharacterController2D.cs" />
     <Compile Include="Assets\Scripts\Obsolete\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Obsolete\PlayerController_v2.cs" />
+    <Compile Include="Assets\Scripts\Obsolete\ScoreCnt (by scene).cs" />
     <Compile Include="Assets\Scripts\ParallaxLayer.cs" />
     <Compile Include="Assets\Scripts\PlayerController_v3.cs" />
     <Compile Include="Assets\Scripts\RestoreHealth.cs" />

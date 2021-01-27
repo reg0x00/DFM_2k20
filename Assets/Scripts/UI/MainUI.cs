@@ -134,8 +134,9 @@ public class MainUI : MonoBehaviour
         }
     }
     public void DisplayScoresTable(string scene)
-    {      
-        ResultsCanv.GetComponentInChildren<Image>().GetComponentInChildren<Text>().text = ScoreTable.GetSortedResultsByScene(scene);
+    {
+        //ResultsCanv.GetComponentInChildren<Image>().GetComponentInChildren<Text>().text = ScoreTable.GetSortedResultsByScene(scene);
+        ResultsCanv.GetComponentInChildren<Image>().GetComponentInChildren<Text>().text = "Null";
         LvlCnv.SetActive(false);
         ResultsCanv.SetActive(true);
     }

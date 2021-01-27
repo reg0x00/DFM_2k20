@@ -22,11 +22,20 @@ public class Collectibles_ctl : MonoBehaviour
     public string[] CollectOrder;
     public string[] CollectTagsToTrack;
     public int[] CollectNumber;
+    public string[] EtapsID;
+    private string LastEtap;
+    public string GetLastEtap { get { return LastEtap; } }
     int max_NDZ;
     int max_orig;
     int max_garl;
     private void Awake()
     {
+        if(CollectNumber.Length != EtapsID.Length)
+        {
+            Debug.LogError("CollectNumber and EtapsID not equal");
+            Application.Quit();
+        }
+        LastEtap = EtapsID[EtapsID.Length - 1];
         max_NDZ = GameObject.FindGameObjectsWithTag(NDZ_tag).Length;
         max_orig = GameObject.FindGameObjectsWithTag(Orig_tag).Length;
         max_garl = GameObject.FindGameObjectsWithTag(Garl_tag).Length;

@@ -77750,6 +77750,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}
+      propertyPath: EtapsID.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
       propertyPath: CollectOrder.Array.data[0]
       value: NDZ
       objectReference: {fileID: 0}
@@ -77836,6 +77841,21 @@ PrefabInstance:
     - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
         type: 3}
       propertyPath: CollectNumber.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: EtapsID.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: EtapsID.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720511425493302348, guid: 52497aaacd8c9a44591794096be5822c,
+        type: 3}
+      propertyPath: EtapsID.Array.data[2]
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4720511425622666378, guid: 52497aaacd8c9a44591794096be5822c,

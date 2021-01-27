@@ -64,7 +64,8 @@ public class PauseUI : MonoBehaviour
         FinalCnv.GetComponentInChildren<Text>().text = String.Format(FinalTxt,ctl.GetTimePlayed.ToString("F2"));
         FinalCnv.SetActive(true);
         BkgCnv.SetActive(true);
-        ScoreTable.UpdateValueIfGreatherViaInnerKeys(ctl.GetTimePlayed);
+        string FinalEtap = GameObject.Find("Collectibles").GetComponent<Collectibles_ctl>().GetLastEtap;
+        ScoreTable.UpdateValueIfGreatherViaInnerKeys(ctl.GetTimePlayed,FinalEtap);
     }
     public void ReloadLevel()
     {

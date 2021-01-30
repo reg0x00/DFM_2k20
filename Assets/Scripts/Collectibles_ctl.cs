@@ -33,7 +33,7 @@ public class Collectibles_ctl : MonoBehaviour
         if(CollectNumber.Length != EtapsID.Length)
         {
             Debug.LogError("CollectNumber and EtapsID not equal");
-            Application.Quit();
+            UnityEditor.EditorApplication.isPlaying = false;
         }
         LastEtap = EtapsID[EtapsID.Length - 1];
         max_NDZ = GameObject.FindGameObjectsWithTag(NDZ_tag).Length;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ControlPointCtl : MonoBehaviour
 {
+    public string passedEtap;
     ScoreCnt ScoreTable;
     // Start is called before the first frame update
     void Start()

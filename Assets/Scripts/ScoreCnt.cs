@@ -11,9 +11,11 @@ public class ScoreCnt : MonoBehaviour
     private const float EmptyFieldFiller = -1.0f;
     Dictionary<string, Dictionary<string, Dictionary<string,float>>> scores;  // [scene][user][stageID] = score
     private List<string> Etaps_IDs =new List<string>();
+    public List<string> GetEtaps { get { return Etaps_IDs; } }
     private string SavePath;
     private BinaryFormatter formatter;
     private const string SumKey = "sum";
+    public string GetSumKey { get { return SumKey; } }
     private static string LastUpdName;
     private static string LastUpdScene;
     //const int RowLimitTnScoreTable = 9;
@@ -51,7 +53,8 @@ public class ScoreCnt : MonoBehaviour
         foreach (var usr in scores[scene])
         {
             tmpdict.Add(usr.Key, new Dictionary<string, string>());
-            float sum = 0.0F;                     
+            float sum = 0.0F;           
+            bool Finished=true;
             foreach (var stage in usr.Value)
             {
                 string stageid = stage.Key;
@@ -59,6 +62,7 @@ public class ScoreCnt : MonoBehaviour
                 if (stageTime.Equals(EmptyFieldFiller))
                 {
                     tmpdict[usr.Key].Add(stageid, EmptyScoreVal);
+                    Finished = false;
                 }
                 else
                 {
@@ -66,7 +70,10 @@ public class ScoreCnt : MonoBehaviour
                     sum += stageTime;
                 }
             }
-            tmpdict[usr.Key].Add(SumKey, sum.ToString("F2"));
+            if (Finished)
+            {
+                tmpdict[usr.Key].Add(SumKey, sum.ToString("F2"));
+            }
         }
         return tmpdict;
     }
@@ -87,10 +94,10 @@ public class ScoreCnt : MonoBehaviour
     public void AddName(string uname, string SceneName)
     {
         Dictionary<string, float> tmpd = new Dictionary<string, float>();
-        foreach(string ID in Etaps_IDs)
-        {
-            tmpd.Add(ID,EmptyFieldFiller);
-        }
+        //foreach(string ID in Etaps_IDs)
+        //{
+        //    tmpd.Add(ID,EmptyFieldFiller);
+        //}
         scores[SceneName].Add(uname, tmpd);
         SaveDictToFile();
     }

@@ -8,10 +8,7 @@ public class ScoreCnt : MonoBehaviour
 {
     public string PathToSave;//= "/Saves/ScoreTables.bin"    
     public string EmptyScoreVal;// = "неуд.";
-    private const float EmptyFieldFiller = -1.0f;
     Dictionary<string, Dictionary<string, Dictionary<string,float>>> scores;  // [scene][user][stageID] = score
-    private List<string> Etaps_IDs =new List<string>();
-    public List<string> GetEtaps { get { return Etaps_IDs; } }
     private string SavePath;
     private BinaryFormatter formatter;
     private const string SumKey = "sum";
@@ -19,17 +16,19 @@ public class ScoreCnt : MonoBehaviour
     private static string LastUpdName;
     private static string LastUpdScene;
     //const int RowLimitTnScoreTable = 9;
-    public List<string> GetSortedUsers(string scene)
+    public List<string> GetSortedUsers(string scene,List<string> Etaps)
     {
+        if (!scores.ContainsKey(scene))
+            return new List<string>();
         Dictionary<string, float> tmpSumDict = new Dictionary<string, float>();
         foreach (var usr in scores[scene])
         {
             float sum = 0.0F;
-            foreach (var stage in usr.Value)
+            foreach (var etap in Etaps)
             {
-                if (!stage.Value.Equals(EmptyFieldFiller))
+                if (usr.Value.ContainsKey(etap))
                 {
-                    sum += stage.Value;
+                    sum += usr.Value[etap];
                 }
             }
             tmpSumDict.Add(usr.Key,sum);
@@ -43,7 +42,7 @@ public class ScoreCnt : MonoBehaviour
         }
         return out_sorted_usrs;
     }
-    public Dictionary<string, Dictionary<string, string>> GetResultsByScene(string scene)
+    public Dictionary<string, Dictionary<string, string>> GetResultsByScene(string scene, List<string> Etaps)
     {
         Dictionary <string, Dictionary<string, string>> tmpdict = new Dictionary<string, Dictionary<string, string>>();
         if (!scores.ContainsKey(scene))
@@ -54,25 +53,27 @@ public class ScoreCnt : MonoBehaviour
         {
             tmpdict.Add(usr.Key, new Dictionary<string, string>());
             float sum = 0.0F;           
-            bool Finished=true;
-            foreach (var stage in usr.Value)
+            bool EtapFinished=true;
+            foreach (var stage in Etaps)
             {
-                string stageid = stage.Key;
-                float stageTime = stage.Value;
-                if (stageTime.Equals(EmptyFieldFiller))
+                if (!usr.Value.ContainsKey(stage))
                 {
-                    tmpdict[usr.Key].Add(stageid, EmptyScoreVal);
-                    Finished = false;
+                    tmpdict[usr.Key].Add(stage, EmptyScoreVal);
+                    EtapFinished = false;
                 }
                 else
                 {
-                    tmpdict[usr.Key].Add(stageid, stageTime.ToString("F2"));
-                    sum += stageTime;
+                    tmpdict[usr.Key].Add(stage, usr.Value[stage].ToString("F2"));
+                    sum += usr.Value[stage];
                 }
             }
-            if (Finished)
+            if (EtapFinished)
             {
                 tmpdict[usr.Key].Add(SumKey, sum.ToString("F2"));
+            }
+            else
+            {
+                tmpdict[usr.Key].Add(SumKey, EmptyScoreVal);
             }
         }
         return tmpdict;
@@ -103,7 +104,7 @@ public class ScoreCnt : MonoBehaviour
     }
     public void UpdateValueIfGreatherViaInnerKeys(float score,string etap)
     {        
-           if (scores[LastUpdScene][LastUpdName][etap].Equals(EmptyFieldFiller) || (scores[LastUpdScene][LastUpdName][etap].CompareTo(score) > 0))
+           if (!scores[LastUpdScene][LastUpdName].ContainsKey(etap) || (scores[LastUpdScene][LastUpdName][etap].CompareTo(score) > 0))
         {
             scores[LastUpdScene][LastUpdName][etap] = score;
             SaveDictToFile();
@@ -129,19 +130,9 @@ public class ScoreCnt : MonoBehaviour
         }
         stream.Close();
     }
-    private void GetEtapsID()
-    {
-        GameObject ColCtl = GameObject.Find("Collectibles");
-        Collectibles_ctl Collectibles_ctl_Targets = ColCtl.GetComponent<Collectibles_ctl>();
-        foreach(string ID in Collectibles_ctl_Targets.EtapsID)
-        {
-            Etaps_IDs.Add(ID);
-        }
-    }
     // Start is called before the first frame update
     void Awake()
     {
-        GetEtapsID();
         formatter = new BinaryFormatter();
         SavePath = Application.dataPath + PathToSave;
         UpdateDict();

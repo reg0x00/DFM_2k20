@@ -21,11 +21,11 @@ public class PauseUI : MonoBehaviour
         ResCnv = GameObject.Find("ResultsCanvas");
         init_entry = GameObject.Find("Entry");
         init_entry.SetActive(false);
-        ResetAllWindows();
+        //ResetAllWindows();
         ScoreTableCnt = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
 
 
-        //FillResTable();
+        FillResTable();
     }
     private void Update()
     {        
@@ -96,8 +96,8 @@ public class PauseUI : MonoBehaviour
         EntryKeys = new List<string>(init_Head());
         EntryKeys.Add(ScoreTableCnt.GetSumKey);
         string Scene = SceneManager.GetActiveScene().name;
-        List<string> users=ScoreTableCnt.GetSortedUsers(Scene);
-        Dictionary<string, Dictionary<string, string>> data = ScoreTableCnt.GetResultsByScene(Scene);
+        List<string> users=ScoreTableCnt.GetSortedUsers(Scene, EntryKeys);
+        Dictionary<string, Dictionary<string, string>> data = ScoreTableCnt.GetResultsByScene(Scene, EntryKeys);
         foreach (var us in users)
         {
             AddEntry(us, data[us], EntryKeys);
@@ -106,7 +106,8 @@ public class PauseUI : MonoBehaviour
     private List<string> init_Head()
     {
         GameObject HeadPnl = GameObject.Find("HeadPanel");
-        Queue<string> EtapsName = new Queue<string>(ScoreTableCnt.GetEtaps);        
+        List<string> Etaps = GetEtapsID();
+        Queue<string> EtapsName = new Queue<string>(Etaps);        
         for (int i = 0; i < HeadPnl.transform.childCount; i++)
         {
             if (HeadPnl.transform.GetChild(i).name.Contains(EtapHeadTrack))
@@ -116,7 +117,7 @@ public class PauseUI : MonoBehaviour
         {
             Debug.LogError("Not enough EtapHeads");
         }
-        return ScoreTableCnt.GetEtaps;
+        return Etaps;
     }
     private void AddEntry(string user, Dictionary<string, string> ent, List<string> Fields)
     {
@@ -126,5 +127,16 @@ public class PauseUI : MonoBehaviour
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    private List<string> GetEtapsID()
+    {
+        List<string> tmplst = new List<string>();
+        GameObject ColCtl = GameObject.Find("Collectibles");
+        Collectibles_ctl Collectibles_ctl_Targets = ColCtl.GetComponent<Collectibles_ctl>();
+        foreach (string ID in Collectibles_ctl_Targets.EtapsID)
+        {
+            tmplst.Add(ID);
+        }
+        return tmplst;
     }
 }

@@ -5,21 +5,15 @@ using UnityEngine;
 public class ControlPointCtl : MonoBehaviour
 {
     public string passedEtap;
-    ScoreCnt ScoreTable;
+    private PauseUI PauseCtl; 
     // Start is called before the first frame update
     void Start()
     {
-        ScoreTable = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PauseCtl = GameObject.Find("MenuCtl").GetComponent<PauseUI>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Enter");
+        //PauseCtl.
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

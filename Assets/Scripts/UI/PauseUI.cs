@@ -9,23 +9,16 @@ public class PauseUI : MonoBehaviour
     public GameObject MenuCnv;
     public GameObject BkgCnv;
     public GameObject FinalCnv;
-    public GameObject ResCnv;
-    public string EtapHeadTrack;
+    private ResultsCanvasCtrl ResCnvCtl;
     private const string FinalTxt = "Поздравляю, вы сдали экзамен!\n Ваш результат : {0}";
-    private GameObject init_entry;
-    private List<string> EntryKeys;
     ScoreCnt ScoreTableCnt;
     // Start is called before the first frame update
     void Awake()
     {
-        ResCnv = GameObject.Find("ResultsCanvas");
-        init_entry = GameObject.Find("Entry");
-        init_entry.SetActive(false);
-        //ResetAllWindows();
+        ResCnvCtl = GameObject.Find("ResultsCanvas").GetComponent<ResultsCanvasCtrl>();        
         ScoreTableCnt = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
-
-
-        FillResTable();
+        ResCnvCtl.FillResTableByEtaps(GetEtapsID(), SceneManager.GetActiveScene().name);
+        ResetAllWindows();
     }
     private void Update()
     {        
@@ -38,6 +31,10 @@ public class PauseUI : MonoBehaviour
         {
             CangeMenuStatus(false);
             return;
+        }
+        if (Input.GetKeyDown("escape") && ResCnvCtl.VisibleState)
+        {
+            ResCnvCtl.SetVisibility(false);
         }
     }
     public void ReturnBtn()
@@ -61,7 +58,7 @@ public class PauseUI : MonoBehaviour
         MenuCnv.SetActive(false);
         BkgCnv.SetActive(false);
         FinalCnv.SetActive(false);
-        ResCnv.SetActive(false);
+        ResCnvCtl.SetVisibility(false);
     }
 
     public void FinalViaCollider(Collider2D collision)
@@ -74,55 +71,10 @@ public class PauseUI : MonoBehaviour
         string FinalEtap = GameObject.Find("Collectibles").GetComponent<Collectibles_ctl>().GetLastEtap;
         ScoreTableCnt.UpdateValueIfGreatherViaInnerKeys(ctl.GetTimePlayed,FinalEtap);
     }
-    public void DisplayResTable(bool status)
+    public void DisplayResTableAndAddEntr(string etap)
     {
-        BkgCnv.SetActive(status);
-        if (status)
-        {
-            FillResTable();
-        }
-    }
-    private void ResrtResTable()
-    {
-
-
-
-    }
-    private void FillResTable()
-    {
-        //GameObject el =Instantiate(init_entry);
-        //el.transform.SetParent(GameObject.Find("Content").transform);
-        //el.SetActive(true);
-        EntryKeys = new List<string>(init_Head());
-        EntryKeys.Add(ScoreTableCnt.GetSumKey);
-        string Scene = SceneManager.GetActiveScene().name;
-        List<string> users=ScoreTableCnt.GetSortedUsers(Scene, EntryKeys);
-        Dictionary<string, Dictionary<string, string>> data = ScoreTableCnt.GetResultsByScene(Scene, EntryKeys);
-        foreach (var us in users)
-        {
-            AddEntry(us, data[us], EntryKeys);
-        }
-    }
-    private List<string> init_Head()
-    {
-        GameObject HeadPnl = GameObject.Find("HeadPanel");
-        List<string> Etaps = GetEtapsID();
-        Queue<string> EtapsName = new Queue<string>(Etaps);        
-        for (int i = 0; i < HeadPnl.transform.childCount; i++)
-        {
-            if (HeadPnl.transform.GetChild(i).name.Contains(EtapHeadTrack))
-                HeadPnl.transform.GetChild(i).GetComponentInChildren<Text>().text = EtapsName.Dequeue();
-        }
-        if(EtapsName.Count != 0)
-        {
-            Debug.LogError("Not enough EtapHeads");
-        }
-        return Etaps;
-    }
-    private void AddEntry(string user, Dictionary<string, string> ent, List<string> Fields)
-    {
-
-        Debug.Log(user);
+        BkgCnv.SetActive(true);
+        ResCnvCtl.FillResTableByEtaps(GetEtapsID(), SceneManager.GetActiveScene().name);
     }
     public void ReloadLevel()
     {

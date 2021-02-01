@@ -11,12 +11,13 @@ public class ControlPointCtl : MonoBehaviour
     {
         PauseCtl = GameObject.Find("MenuCtl").GetComponent<PauseUI>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        PauseCtl.EtapPass(collision, passedEtap);
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        gameObject.SetActive(false);
+        if (GameObject.Find("Collectibles").GetComponent<Collectibles_ctl>().IsEtapComplete(passedEtap))
+        {
+            PauseCtl.EtapPass(collision, passedEtap);
+            gameObject.SetActive(false);
+        }
     }
 }

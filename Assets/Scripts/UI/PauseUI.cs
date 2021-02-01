@@ -76,10 +76,10 @@ public class PauseUI : MonoBehaviour
         string FinalEtap = GameObject.Find("Collectibles").GetComponent<Collectibles_ctl>().GetLastEtap;
         ScoreTableCnt.UpdateValueIfGreatherViaInnerKeys(ctl.GetTimePlayed,FinalEtap);
     }
-    public void EtapPass(Collider2D collision,string Etap)
+    public void EtapPass(Collision2D collision,string Etap)
     {
         BkgAndTimeStop(true);
-        Playerctl = collision.GetComponent<PlayerController_v3>();
+        Playerctl = collision.collider.GetComponent<PlayerController_v3>();
         ScoreTableCnt.UpdateValueIfGreatherViaInnerKeys(Playerctl.GetTimePlayed, Etap);
         ResCnvCtl.FillResTableByEtaps(GetEtapsID(), SceneManager.GetActiveScene().name);
         ResCnvCtl.SetVisibility(true);

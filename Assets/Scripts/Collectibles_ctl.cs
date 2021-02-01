@@ -22,7 +22,7 @@ public class Collectibles_ctl : MonoBehaviour
     public string[] CollectOrder;
     public string[] CollectTagsToTrack;
     public int[] CollectNumber;
-    public string[] EtapsID;
+    public List<string> EtapsID;
     private string LastEtap;
     public string GetLastEtap { get { return LastEtap; } }
     int max_NDZ;
@@ -30,12 +30,12 @@ public class Collectibles_ctl : MonoBehaviour
     int max_garl;
     private void Awake()
     {
-        if(CollectNumber.Length != EtapsID.Length)
+        if(CollectNumber.Length != EtapsID.Count)
         {
             Debug.LogError("CollectNumber and EtapsID not equal");
             UnityEditor.EditorApplication.isPlaying = false;
         }
-        LastEtap = EtapsID[EtapsID.Length - 1];
+        LastEtap = EtapsID[EtapsID.Count - 1];
         max_NDZ = GameObject.FindGameObjectsWithTag(NDZ_tag).Length;
         max_orig = GameObject.FindGameObjectsWithTag(Orig_tag).Length;
         max_garl = GameObject.FindGameObjectsWithTag(Garl_tag).Length;
@@ -56,6 +56,24 @@ public class Collectibles_ctl : MonoBehaviour
         //garl.enabled = (GameObject.FindGameObjectsWithTag(Garl_tag).Length == 0);
         ID.enabled = (GameObject.FindGameObjectsWithTag(ID_tag).Length == 0);
 
+    }
+    public bool IsEtapComplete(string etap)
+    {
+        int EtapID = EtapsID.IndexOf(etap);
+        int MustCollected = 0;
+        for(int i =0; i<=EtapID; i++)
+        {
+            MustCollected += CollectNumber[i];
+        }
+        foreach(var i in CollectOrder)
+        {
+            if(GameObject.Find(i) != null)
+            {
+                break;
+            }
+            MustCollected--;
+        }
+        return MustCollected <= 0;
     }
 }
 

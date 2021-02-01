@@ -125,7 +125,7 @@ public class MainUI : MonoBehaviour
     }
     public void GetInputFromEnterName()
     {
-        if(InputField.text.Length == 3)
+        if(InputField.text.Length >= 3)
         {
             EnterNameNext.SetActive(true);
         }

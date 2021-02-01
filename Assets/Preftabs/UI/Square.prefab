@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e678ae3547e5e084a876d498d860937d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passedEtap: 
+  passedEtap: "1 \u044D\u0442\u0430\u043F"

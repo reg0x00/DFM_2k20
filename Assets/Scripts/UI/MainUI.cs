@@ -16,9 +16,11 @@ public class MainUI : MonoBehaviour
     public Text InputField;
     ScoreCnt ScoreTable;
     private string SelectedScene;
+    private ResultsCanvasCtrl ResCnvCtl;
     private void Awake()
     {
         ScoreTable = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
+        ResCnvCtl = ResultsCanv.GetComponent<ResultsCanvasCtrl>();
         ResetToStartState();
     }
     private void Update()
@@ -51,11 +53,10 @@ public class MainUI : MonoBehaviour
             BackInNameFromCollisionWarn();
             return;
         }
-        if(ResultsCanv.activeSelf && Input.GetKeyDown("escape"))
+        if(ResCnvCtl.VisibleState && Input.GetKeyDown("escape"))
         {
             LvlCnv.SetActive(true);
-            ResultsCanv.SetActive(false);
-            ResultsCanv.GetComponentInChildren<Image>().GetComponentInChildren<Text>().text = "";
+            ResCnvCtl.SetVisibility(false);
             return;
         }
     }
@@ -120,7 +121,7 @@ public class MainUI : MonoBehaviour
         EnterNameCnv.SetActive(false);
         EnterNameNext.SetActive(false);
         CollisionNameCanv.SetActive(false);
-        ResultsCanv.SetActive(false);
+        ResCnvCtl.SetVisibility(false);
     }
     public void GetInputFromEnterName()
     {
@@ -133,10 +134,10 @@ public class MainUI : MonoBehaviour
             EnterNameNext.SetActive(false);
         }
     }
-    public void DisplayScoresTable(string scene)
-    {      
-        ResultsCanv.GetComponentInChildren<Image>().GetComponentInChildren<Text>().text = ScoreTable.GetSortedResultsByScene(scene);
+    public void DisplayScoresTable(ButtonTableEtapsTagHolder holder)
+    {
+        ResCnvCtl.FillResTableByEtaps(holder.Etpas,holder.SceneToDisplay);
         LvlCnv.SetActive(false);
-        ResultsCanv.SetActive(true);
+        ResCnvCtl.SetVisibility(true);
     }
 }

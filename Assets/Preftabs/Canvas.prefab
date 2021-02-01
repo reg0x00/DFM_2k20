@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4720511425281725352}
   - component: {fileID: 4720511425281725353}
   m_Layer: 5
-  m_Name: Garl
+  m_Name: Garl_cnv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,6 +256,28 @@ MonoBehaviour:
   Ori_gold: {fileID: 4720511426093776208}
   Ori_silv: {fileID: 4720511426419174285}
   ID: {fileID: 4720511427191867251}
+  CollectOrder:
+  - NDZ
+  - NDZ (2)
+  - NDZ (1)
+  - Origami (1)
+  - Origami (6)
+  - Origami (2)
+  - Origami (5)
+  - Origami
+  - Origami (3)
+  - Origami (4)
+  - Girlanda
+  CollectTagsToTrack:
+  - NDZ
+  - Ori
+  - Garl
+  - ID
+  CollectNumber: 030000000500000003000000
+  EtapsID:
+  - "1 \u044D\u0442\u0430\u043F"
+  - "2 \u044D\u0442\u0430\u043F"
+  - "3 \u044D\u0442\u0430\u043F"
 --- !u!1 &4720511425508654588
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +364,7 @@ GameObject:
   - component: {fileID: 4720511425622666375}
   - component: {fileID: 4720511425622666376}
   m_Layer: 5
-  m_Name: NDZ
+  m_Name: NDZ_cnv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1409,7 +1431,7 @@ GameObject:
   - component: {fileID: 4720511427169624287}
   - component: {fileID: 4720511427169624256}
   m_Layer: 5
-  m_Name: Origami
+  m_Name: Origami_cnv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

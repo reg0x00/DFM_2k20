@@ -282,5 +282,8 @@ public class PlayerController_v3 : MonoBehaviour
         health_is_full = (health==max_health);
         Health_ctl.instance.UpdateHealth(health);
     }
-
+    public void ResetTime()
+    {
+        game_timer_offset= Time.fixedTime;
+    }
 }

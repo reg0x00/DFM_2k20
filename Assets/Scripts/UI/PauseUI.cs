@@ -10,14 +10,14 @@ public class PauseUI : MonoBehaviour
     public GameObject BkgCnv;
     public GameObject FinalCnv;
     private ResultsCanvasCtrl ResCnvCtl;
+    private PlayerController_v3 Playerctl;
     private const string FinalTxt = "Поздравляю, вы сдали экзамен!\n Ваш результат : {0}";
     ScoreCnt ScoreTableCnt;
     // Start is called before the first frame update
     void Awake()
     {
         ResCnvCtl = GameObject.Find("ResultsCanvas").GetComponent<ResultsCanvasCtrl>();        
-        ScoreTableCnt = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
-        ResCnvCtl.FillResTableByEtaps(GetEtapsID(), SceneManager.GetActiveScene().name);
+        ScoreTableCnt = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();        
         ResetAllWindows();
     }
     private void Update()
@@ -34,7 +34,7 @@ public class PauseUI : MonoBehaviour
         }
         if (Input.GetKeyDown("escape") && ResCnvCtl.VisibleState)
         {
-            ResCnvCtl.SetVisibility(false);
+            SetNextEtap();
         }
     }
     public void ReturnBtn()
@@ -50,6 +50,11 @@ public class PauseUI : MonoBehaviour
     {
         Time.timeScale = Convert.ToInt32(!status);
         MenuCnv.SetActive(status);
+        BkgCnv.SetActive(status);
+    }
+    private void BkgAndTimeStop(bool status)
+    {
+        Time.timeScale = Convert.ToInt32(!status);
         BkgCnv.SetActive(status);
     }
     private void ResetAllWindows()
@@ -70,6 +75,20 @@ public class PauseUI : MonoBehaviour
         BkgCnv.SetActive(true);
         string FinalEtap = GameObject.Find("Collectibles").GetComponent<Collectibles_ctl>().GetLastEtap;
         ScoreTableCnt.UpdateValueIfGreatherViaInnerKeys(ctl.GetTimePlayed,FinalEtap);
+    }
+    public void EtapPass(Collider2D collision,string Etap)
+    {
+        BkgAndTimeStop(true);
+        Playerctl = collision.GetComponent<PlayerController_v3>();
+        ScoreTableCnt.UpdateValueIfGreatherViaInnerKeys(Playerctl.GetTimePlayed, Etap);
+        ResCnvCtl.FillResTableByEtaps(GetEtapsID(), SceneManager.GetActiveScene().name);
+        ResCnvCtl.SetVisibility(true);
+    }
+    public void SetNextEtap()
+    {
+        Playerctl.ResetTime();
+        BkgAndTimeStop(false);
+        ResCnvCtl.SetVisibility(false);
     }
     public void DisplayResTableAndAddEntr(string etap)
     {

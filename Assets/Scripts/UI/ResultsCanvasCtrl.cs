@@ -8,14 +8,11 @@ public class ResultsCanvasCtrl : MonoBehaviour
     private GameObject init_entry;
     private ScoreCnt ScoreTableCnt;
     public string EtapHeadTrack = "Eatp";
-    private string SumEntrTrack = "Sum";
-    private string EtapEntrTrack = "Eatp";
-    private string NameEntrTrack = "NameField";
-    private bool is_visible=true;
+    private bool is_visible = true;
     public bool VisibleState { get { return is_visible; } }
     private List<string> EtapKeys;
     private GameObject ContentGO;
-    private List<GameObject> ActivatedEntrys= new List<GameObject>();
+    private List<GameObject> ActivatedEntrys = new List<GameObject>();
     private void Awake()
     {
         init_entry = GameObject.Find("Entry");
@@ -30,12 +27,12 @@ public class ResultsCanvasCtrl : MonoBehaviour
     }
     private void ResrtTableEntrys()
     {
-        foreach(var ent in ActivatedEntrys)
+        foreach (var ent in ActivatedEntrys)
         {
             Destroy(ent);
         }
     }
-    public void FillResTableByEtaps(List<string> InEtaps,string Scene)
+    public void FillResTableByEtaps(List<string> InEtaps, string Scene)
     {
         ResrtTableEntrys();
         EtapKeys = new List<string>(InEtaps);
@@ -67,25 +64,20 @@ public class ResultsCanvasCtrl : MonoBehaviour
         //GameObject el =Instantiate(init_entry);
         //el.transform.SetParent(GameObject.Find("Content").transform);
         //el.SetActive(true);
+        Queue<string> EntryFields = new Queue<string>();
+        EntryFields.Enqueue(user);
+        foreach (var field in Fields)
+        {
+            EntryFields.Enqueue(ent[field]);
+        }
+        EntryFields.Enqueue(ent[ScoreTableCnt.GetSumKey]);
         GameObject element = Instantiate(init_entry);
         ActivatedEntrys.Add(element);
         element.transform.SetParent(ContentGO.transform);
-        for (int i = 0; i < element.transform.childCount; i++)
+        for (int i = 0; (i < element.transform.childCount) && (EntryFields.Count != 0); i++)
         {
-            SetChildTextIfContainTag(element.transform.GetChild(i), NameEntrTrack, user);
-            SetChildTextIfContainTag(element.transform.GetChild(i), SumEntrTrack, ent[ScoreTableCnt.GetSumKey]);
-            foreach (var field in Fields)
-            {
-                SetChildTextIfContainTag(element.transform.GetChild(i), EtapEntrTrack, ent[field]);
-            }
+            element.transform.GetChild(i).GetComponentInChildren<Text>().text = EntryFields.Dequeue();
         }
         element.SetActive(true);
-    }
-    private void SetChildTextIfContainTag(Transform target, string tag, string text)
-    {
-        if (target.name.Contains(tag))
-        {
-            target.GetComponentInChildren<Text>().text = text;
-        }
     }
 }

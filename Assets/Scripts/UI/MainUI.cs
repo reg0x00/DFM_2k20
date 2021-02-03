@@ -13,12 +13,14 @@ public class MainUI : MonoBehaviour
     public GameObject EnterNameNext;
     public GameObject CollisionNameCanv;
     public GameObject ResultsCanv;
-    public Text InputField;
     ScoreCnt ScoreTable;
     private string SelectedScene;
     private ResultsCanvasCtrl ResCnvCtl;
+    public Text TextInputField;
+    private InputField NameIF;
     private void Awake()
     {
+        NameIF = GameObject.Find("NameInputField").GetComponent<InputField>();
         ScoreTable = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
         ResCnvCtl = ResultsCanv.GetComponent<ResultsCanvasCtrl>();
         ResetToStartState();
@@ -48,7 +50,7 @@ public class MainUI : MonoBehaviour
             GetInputFromEnterName();
             return;
         }
-        if(CollisionNameCanv.activeSelf && Input.GetKeyDown("escape"))
+        if (CollisionNameCanv.activeSelf && Input.GetKeyDown("escape"))
         {
             BackInNameFromCollisionWarn();
             return;
@@ -81,13 +83,14 @@ public class MainUI : MonoBehaviour
         LvlCnv.SetActive(false);
         EnterNameCnv.SetActive(true);
         EnterNameNext.SetActive(false);
+        NameIF.Select();
     }
     public void CheckName()
     {
-        ScoreTable.SetActiveKeys(InputField.text, SelectedScene);
-        if (!ScoreTable.HaveUname(InputField.text, SelectedScene))
+        ScoreTable.SetActiveKeys(TextInputField.text, SelectedScene);
+        if (!ScoreTable.HaveUname(TextInputField.text, SelectedScene))
         {
-            ScoreTable.AddName(InputField.text, SelectedScene);            
+            ScoreTable.AddName(TextInputField.text, SelectedScene);            
             LoadLvl();
         }
         else
@@ -125,7 +128,7 @@ public class MainUI : MonoBehaviour
     }
     public void GetInputFromEnterName()
     {
-        if(InputField.text.Length >= 3)
+        if(TextInputField.text.Length >= 3)
         {
             EnterNameNext.SetActive(true);
         }

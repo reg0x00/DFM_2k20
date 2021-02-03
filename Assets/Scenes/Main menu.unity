@@ -1482,7 +1482,7 @@ GameObject:
   - component: {fileID: 722145338}
   - component: {fileID: 722145337}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: NameInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1564,7 +1564,18 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1806725063}
+        m_MethodName: GetInputFromEnterName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -2747,7 +2758,7 @@ MonoBehaviour:
   EnterNameNext: {fileID: 302011558}
   CollisionNameCanv: {fileID: 749629150}
   ResultsCanv: {fileID: 4054476357187852631}
-  InputField: {fileID: 1096955171}
+  TextInputField: {fileID: 1096955171}
 --- !u!4 &1806725064
 Transform:
   m_ObjectHideFlags: 0

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1832469083984834365}
   - component: {fileID: 1832469083984834364}
   - component: {fileID: 1832469083984834367}
-  - component: {fileID: 1832469083984834366}
   - component: {fileID: 3743482116229520605}
+  - component: {fileID: 2790341447516153304}
   m_Layer: 0
   m_Name: SpeedAdder
   m_TagString: Untagged
@@ -111,20 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3125, y: 0.40625}
   m_EdgeRadius: 0
---- !u!114 &1832469083984834366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832469083984834339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a32fe3095f14f4ca9d4345508c5930, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed_boost_set_value: 10
-  speed_boost_duration: 10
 --- !u!95 &3743482116229520605
 Animator:
   serializedVersion: 3
@@ -144,3 +130,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2790341447516153304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832469083984834339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad868d806d494c4e8a4aa5d7be792e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Invulnerable_time: 10

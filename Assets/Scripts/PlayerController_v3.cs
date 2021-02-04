@@ -43,6 +43,10 @@ public class PlayerController_v3 : MonoBehaviour
     public int max_health;
     bool health_is_full;
     public bool check_max_hp_status { get { return health_is_full; } }
+    float InvulnerableTime = -1.0F;
+    public float SetIinvulnerableTime { set { InvulnerableTime = value; } }
+    private const float InvSprtStartAnimation = 6;
+    private const float InvSprtMaxSpeed = 10;
     private float drag_dir = 0;
     public float set_drag_dir { set { drag_dir = value; } }
     bool drag = false;
@@ -59,6 +63,7 @@ public class PlayerController_v3 : MonoBehaviour
     public Text Timer;
     public Animator TimerAnimator;
     public Animator HealthAnimator;
+    private Animator InvSprt;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -66,6 +71,7 @@ public class PlayerController_v3 : MonoBehaviour
     }
     void Start()
     {
+        InvSprt = GameObject.Find("InvulnerableSprite").GetComponent<Animator>();
         //QualitySettings.vSyncCount = 0;
         //Application.targetFrameRate = 30;  
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -79,7 +85,7 @@ public class PlayerController_v3 : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
         //Debug.Log(1 / Time.deltaTime);
     }
     private void FixedUpdate()
@@ -111,9 +117,27 @@ public class PlayerController_v3 : MonoBehaviour
         }
         if (in_flight)
             drag = false;
+        if(last_FixedUpdate_time< InvulnerableTime)
+        {
+            InvSprt.GetComponent<SpriteRenderer>().enabled = true;
+            if((InvulnerableTime- last_FixedUpdate_time)< InvSprtStartAnimation)
+            {
+                InvSprt.enabled = true;
+                InvSprt.speed = (1 - (InvulnerableTime - last_FixedUpdate_time) / InvSprtStartAnimation)*InvSprtMaxSpeed;
+            }
+            else
+            {
+                InvSprt.enabled = false;
+            }
+        }
+        else
+        {
+            InvSprt.enabled = false;
+            InvSprt.GetComponent<SpriteRenderer>().enabled = false;
+        }
         animator.SetFloat("Move X", lookDirection.x);
         animator.SetFloat("Move X_mag",Mathf.Abs(horizontal));
-        animator.SetBool("On_ladder", on_ladder);
+        animator.SetBool("On_ladder", on_ladder && in_flight);
         animator.SetFloat("Move_Y", Input.GetAxis("Vertical"));
         animator.SetBool("Is_dragging", drag);
         animator.SetFloat("Drag_dir", drag_dir);
@@ -239,7 +263,7 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.name == "Spikes")
+        if (collision.collider.name == "Spikes" && Time.fixedTime>InvulnerableTime)
         {
             dead = true;
         }

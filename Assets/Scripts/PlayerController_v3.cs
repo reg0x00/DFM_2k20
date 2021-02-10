@@ -13,6 +13,7 @@ public class PlayerController_v3 : MonoBehaviour
     public float set_speed_boost_time { set { speed_boost_time = value; } }
     public bool ladder_set { set { on_ladder = value; } }
     bool on_ladder = false;
+    bool turn_on_ladder_animatron = false;
     float default_speed;
     float y_speed;
     Vector2 prw_pos = new Vector2(0, 0);
@@ -137,7 +138,7 @@ public class PlayerController_v3 : MonoBehaviour
         }
         animator.SetFloat("Move X", lookDirection.x);
         animator.SetFloat("Move X_mag",Mathf.Abs(horizontal));
-        animator.SetBool("On_ladder", on_ladder && in_flight);
+        animator.SetBool("On_ladder", turn_on_ladder_animatron);
         animator.SetFloat("Move_Y", Input.GetAxis("Vertical"));
         animator.SetBool("Is_dragging", drag);
         animator.SetFloat("Drag_dir", drag_dir);
@@ -284,6 +285,13 @@ public class PlayerController_v3 : MonoBehaviour
             {
                 last_checkpoint = ctl.GetComponent<Rigidbody2D>().position;
             }
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.GetComponent<ladder>())
+        {
+            turn_on_ladder_animatron = collision.OverlapPoint(gameObject.GetComponent<Transform>().position);
         }
     }
     private void Flight_hard_reset()

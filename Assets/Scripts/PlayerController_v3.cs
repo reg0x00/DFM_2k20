@@ -224,6 +224,10 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (collision.collider.name == "Spikes" && Time.fixedTime > InvulnerableTime)
+        {
+            dead = true;
+        }
         if (in_flight_last_frame_processed)
         {
             in_flight = true;
@@ -264,10 +268,6 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.name == "Spikes" && Time.fixedTime>InvulnerableTime)
-        {
-            dead = true;
-        }
         foreach (ContactPoint2D point in collision.contacts)
         {
             if (Mathf.Approximately(point.normal.y, -1.0F))

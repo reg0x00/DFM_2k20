@@ -8,16 +8,16 @@ public class PauseUI : MonoBehaviour
 {
     public GameObject MenuCnv;
     public GameObject BkgCnv;
-    public GameObject FinalCnv;
-    private ResultsCanvasCtrl ResCnvCtl;
+    //public GameObject FinalCnv;
+    //private ResultsCanvasCtrl ResCnvCtl;
     private PlayerController_v3 Playerctl;
     private const string FinalTxt = "Поздравляю, вы сдали экзамен!\n Ваш результат : {0}";
     ScoreCnt ScoreTableCnt;
     // Start is called before the first frame update
     void Awake()
     {
-        ResCnvCtl = GameObject.Find("ResultsCanvas").GetComponent<ResultsCanvasCtrl>();        
-        ScoreTableCnt = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();        
+        //ResCnvCtl = GameObject.Find("ResultsCanvas").GetComponent<ResultsCanvasCtrl>();        
+        //ScoreTableCnt = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();        
         ResetAllWindows();
     }
     private void Update()
@@ -32,10 +32,10 @@ public class PauseUI : MonoBehaviour
             CangeMenuStatus(false);
             return;
         }
-        if (Input.GetKeyDown("escape") && ResCnvCtl.VisibleState)
-        {
-            SetNextEtap();
-        }
+        //if (Input.GetKeyDown("escape") && ResCnvCtl.VisibleState)
+        //{
+        //    SetNextEtap();
+        //}
     }
     public void ReturnBtn()
     {
@@ -62,16 +62,16 @@ public class PauseUI : MonoBehaviour
         Time.timeScale = 1;
         MenuCnv.SetActive(false);
         BkgCnv.SetActive(false);
-        FinalCnv.SetActive(false);
-        ResCnvCtl.SetVisibility(false);
+        //FinalCnv.SetActive(false);
+        //ResCnvCtl.SetVisibility(false);
     }
 
     public void FinalViaCollider(Collider2D collision)
     {
         Time.timeScale = 0;
         PlayerController_v3 ctl = collision.GetComponent<PlayerController_v3>();
-        FinalCnv.GetComponentInChildren<Text>().text = String.Format(FinalTxt,ctl.GetTimePlayed.ToString("F2"));
-        FinalCnv.SetActive(true);
+        //FinalCnv.GetComponentInChildren<Text>().text = String.Format(FinalTxt,ctl.GetTimePlayed.ToString("F2"));
+        //FinalCnv.SetActive(true);
         BkgCnv.SetActive(true);
         string FinalEtap = GameObject.Find("Collectibles").GetComponent<Collectibles_ctl>().GetLastEtap;
         ScoreTableCnt.UpdateValueIfGreatherViaInnerKeys(ctl.GetTimePlayed,FinalEtap);
@@ -81,19 +81,19 @@ public class PauseUI : MonoBehaviour
         BkgAndTimeStop(true);
         Playerctl = collision.collider.GetComponent<PlayerController_v3>();
         ScoreTableCnt.UpdateValueIfGreatherViaInnerKeys(Playerctl.GetTimePlayed, Etap);
-        ResCnvCtl.FillResTableByEtaps(GetEtapsID(), SceneManager.GetActiveScene().name);
-        ResCnvCtl.SetVisibility(true);
+        //ResCnvCtl.FillResTableByEtaps(GetEtapsID(), SceneManager.GetActiveScene().name);
+        //ResCnvCtl.SetVisibility(true);
     }
     public void SetNextEtap()
     {
         Playerctl.ResetTime();
         BkgAndTimeStop(false);
-        ResCnvCtl.SetVisibility(false);
+        //ResCnvCtl.SetVisibility(false);
     }
     public void DisplayResTableAndAddEntr(string etap)
     {
         BkgCnv.SetActive(true);
-        ResCnvCtl.FillResTableByEtaps(GetEtapsID(), SceneManager.GetActiveScene().name);
+        //ResCnvCtl.FillResTableByEtaps(GetEtapsID(), SceneManager.GetActiveScene().name);
     }
     public void ReloadLevel()
     {

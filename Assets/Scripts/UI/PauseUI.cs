@@ -23,7 +23,11 @@ public class PauseUI : MonoBehaviour
         ResetAllWindows();
     }
     private void Update()
-    {        
+    {       
+        if (Input.GetKeyDown(KeyCode.JoystickButton6))
+        {
+            Debug.Log("Pressed");
+        }
         if (Input.GetKeyDown("escape") && Time.timeScale != 0)
         {
             CangeMenuStatus(true);

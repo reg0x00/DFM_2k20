@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Obsolete\ScoreCnt (by scene).cs" />
     <Compile Include="Assets\Scripts\ParallaxLayer.cs" />
     <Compile Include="Assets\Scripts\PlayerController_v3.cs" />
+    <Compile Include="Assets\Scripts\Question.cs" />
     <Compile Include="Assets\Scripts\RestoreHealth.cs" />
     <Compile Include="Assets\Scripts\ScoreCnt.cs" />
     <Compile Include="Assets\Scripts\SpeedAdder.cs" />

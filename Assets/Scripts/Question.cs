@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Question : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Question : MonoBehaviour
     private GameObject init_eq;
     private GameObject head_eq;
     private GameObject Block;
+    private GameObject PanelMsg;
+    private GameObject MainHer;
     private Sprite HeadEqSprite;
     private List<Sprite> Anws = new List<Sprite>();
     private List<GameObject> ActivEntry = new List<GameObject>();
@@ -26,6 +29,8 @@ public class Question : MonoBehaviour
         //EntryPaernt = GameObject.Find("Content");
         Block = gameObject.transform.Find("Block").gameObject;
         //Block = GameObject.Find("Block");
+        PanelMsg = GameObject.Find("PanelMessage");
+        MainHer = GameObject.Find("MainCharacter");
         init_eq.SetActive(false);
         FolderPath = System.IO.Directory.GetDirectories(FolderPath)[Random.Range(0, System.IO.Directory.GetDirectories(FolderPath).Length)];
         SetAnwsers();
@@ -44,8 +49,16 @@ public class Question : MonoBehaviour
     {
         if(Anws[number].name == "a")
         {
+            gameObject.transform.Find("Equ").GetComponent<Collider2D>().enabled=false;
+            Block.GetComponent<SpriteRenderer>().enabled = false;
             Block.GetComponent<Collider2D>().enabled = false;
+            PanelMsg.transform.Find("Text").GetComponent<Text>().text = "Верно!";
+            PanelMsg.GetComponent<Animator>().SetTrigger("OK");
+            return;
         }
+        PanelMsg.transform.Find("Text").GetComponent<Text>().text = "не верно";
+        PanelMsg.GetComponent<Animator>().SetTrigger("Not_ok");
+        //MainHer.
     }
     // Update is called once per frame
     void Update()

@@ -11,6 +11,7 @@ public class PauseUI : MonoBehaviour
     //public GameObject FinalCnv;
     //private ResultsCanvasCtrl ResCnvCtl;
     private GameObject AboutPanel;
+    private GameObject DefeatPanel;
     private PlayerController_v3 Playerctl;
     private const string FinalTxt = "Поздравляю, вы сдали экзамен!\n Ваш результат : {0}";
     //ScoreCnt ScoreTableCnt;
@@ -20,6 +21,7 @@ public class PauseUI : MonoBehaviour
         //ResCnvCtl = GameObject.Find("ResultsCanvas").GetComponent<ResultsCanvasCtrl>();        
         //ScoreTableCnt = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
         AboutPanel = GameObject.Find("About panel");
+        DefeatPanel = GameObject.Find("DefeatPanel");
         ResetAllWindows();
     }
     private void Update()
@@ -86,6 +88,7 @@ public class PauseUI : MonoBehaviour
         MenuCnv.SetActive(false);
         BkgCnv.SetActive(false);
         AboutPanel.SetActive(false);
+        DefeatPanel.SetActive(false);
         //FinalCnv.SetActive(false);
         //ResCnvCtl.SetVisibility(false);
     }

@@ -99,7 +99,7 @@ public class PlayerController_v3 : MonoBehaviour
             speed_boost_time = 0;
             rigidbody2d.position = last_checkpoint;
             dead = false;
-            Add_Health(-1);            
+            //Add_Health(-1);            
             return;
         }
         in_flight_last_frame_processed = true;        

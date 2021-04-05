@@ -47,7 +47,11 @@ public class Question : MonoBehaviour
     }
     private void CheckAnwser(int number)
     {
-        if(Anws[number].name == "a")
+        if (PanelMsg.transform.Find("Text").GetComponent<Text>().IsActive())
+        {
+            return;
+        }
+        if (Anws[number].name == "a")
         {
             gameObject.transform.Find("Equ").GetComponent<Collider2D>().enabled=false;
             Block.GetComponent<SpriteRenderer>().enabled = false;
@@ -58,7 +62,7 @@ public class Question : MonoBehaviour
         }
         PanelMsg.transform.Find("Text").GetComponent<Text>().text = "не верно";
         PanelMsg.GetComponent<Animator>().SetTrigger("Not_ok");
-        //MainHer.
+        MainHer.GetComponent<PlayerController_v3>().Add_Health(-1);        
     }
     // Update is called once per frame
     void Update()

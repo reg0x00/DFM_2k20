@@ -13,6 +13,7 @@ public class PauseUI : MonoBehaviour
     private GameObject AboutPanel;
     private GameObject DefeatPanel;
     private PlayerController_v3 Playerctl;
+    private bool defeat = false;
     private const string FinalTxt = "Поздравляю, вы сдали экзамен!\n Ваш результат : {0}";
     //ScoreCnt ScoreTableCnt;
     // Start is called before the first frame update
@@ -25,11 +26,9 @@ public class PauseUI : MonoBehaviour
         ResetAllWindows();
     }
     private void Update()
-    {       
-        if (Input.GetKeyDown(KeyCode.JoystickButton6))
-        {
-            Debug.Log("Pressed");
-        }
+    {
+        if (defeat)
+            return;
         if (Input.GetKeyDown("escape") && Time.timeScale != 0)
         {
             CangeMenuStatus(true);
@@ -49,6 +48,13 @@ public class PauseUI : MonoBehaviour
         //{
         //    SetNextEtap();
         //}
+    }
+    public void Defeat()
+    {
+        defeat = true;
+        Time.timeScale = Convert.ToInt32(false);
+        DefeatPanel.SetActive(true);
+        BkgCnv.SetActive(true);
     }
     public void ReturnBtn()
     {

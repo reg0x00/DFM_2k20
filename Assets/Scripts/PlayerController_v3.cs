@@ -40,7 +40,8 @@ public class PlayerController_v3 : MonoBehaviour
     Vector2 last_checkpoint;
     int last_checkpoint_priority;
     bool dead = false;
-    int health;
+    private int health;
+    public int GetHealth { get { return health; } }
     public int max_health;
     bool health_is_full;
     public bool check_max_hp_status { get { return health_is_full; } }

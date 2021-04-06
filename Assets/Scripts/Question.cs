@@ -63,6 +63,10 @@ public class Question : MonoBehaviour
         PanelMsg.transform.Find("Text").GetComponent<Text>().text = "не верно";
         PanelMsg.GetComponent<Animator>().SetTrigger("Not_ok");
         MainHer.GetComponent<PlayerController_v3>().Add_Health(-1);        
+        if(!(MainHer.GetComponent<PlayerController_v3>().GetHealth > 0))
+        {
+            GameObject.Find("MenuCtl").GetComponent<PauseUI>().Defeat();
+        }
     }
     // Update is called once per frame
     void Update()

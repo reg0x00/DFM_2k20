@@ -17,6 +17,7 @@ public class PauseUI : MonoBehaviour
     private GameObject EntryPaernt;
     private GameObject PanelMsg;
     private GameObject EquGo;
+    private GameObject FinalCnv;
     private Question LastCalledQ;
     public List<Sprite> Keys_Sprt;
     private PlayerController_v3 Playerctl;
@@ -41,6 +42,7 @@ public class PauseUI : MonoBehaviour
         EquGo = GameObject.Find("Equ");
         PanelMsg = GameObject.Find("PanelMessage");
         Playerctl = GameObject.Find("MainCharacter").GetComponent<PlayerController_v3>();
+        FinalCnv = GameObject.Find("Final Cnv");
         ResetAllWindows();
     }
     private void Update()
@@ -90,6 +92,15 @@ public class PauseUI : MonoBehaviour
     public void Zerolling()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void DisplayAboutWindowOnly()
+    {
+        foreach(Transform cmp in MenuCnv.transform)
+        {
+            cmp.gameObject.SetActive(false);
+        }
+        MenuCnv.SetActive(true);
+        AboutPanel.SetActive(true);
     }
     public void DisplayAboutWindow()
     {
@@ -151,6 +162,7 @@ public class PauseUI : MonoBehaviour
         DefeatPanel.SetActive(false);
         init_eq.SetActive(false);
         EquGo.SetActive(false);
+        FinalCnv.SetActive(false);
         //FinalCnv.SetActive(false);
         //ResCnvCtl.SetVisibility(false);
     }
@@ -191,7 +203,8 @@ public class PauseUI : MonoBehaviour
         //FinalCnv.GetComponentInChildren<Text>().text = String.Format(FinalTxt,ctl.GetTimePlayed.ToString("F2"));
         //FinalCnv.SetActive(true);
         BkgCnv.SetActive(true);
-        string FinalEtap = GameObject.Find("Collectibles").GetComponent<Collectibles_ctl>().GetLastEtap;
+        FinalCnv.SetActive(true);
+        //string FinalEtap = GameObject.Find("Collectibles").GetComponent<Collectibles_ctl>().GetLastEtap;
         //ScoreTableCnt.UpdateValueIfGreatherViaInnerKeys(ctl.GetTimePlayed,FinalEtap);
     }
     public void EtapPass(Collision2D collision,string Etap)

@@ -127,6 +127,7 @@ public class PauseUI : MonoBehaviour
         {
             Destroy(i);
         }
+        ActivEntry.Clear();
         BkgAndTimeStop(false);
         EquGo.SetActive(false);
         Playerctl.stun_player_mov = false;

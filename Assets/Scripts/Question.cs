@@ -6,67 +6,20 @@ public class Question : MonoBehaviour
 {
     // Start is called before the first frame update
     public int FolderNuber;
-    public List<Sprite> Keys_Sprt;
-    public List<KeyCode> KeysCodes;
+    public KeyCode InteractKey;
     private string FolderPath = "Assets/Resources/Equations";
-    private GameObject init_eq;
-    private GameObject head_eq;
-    private GameObject Block;
-    private GameObject PanelMsg;
-    private GameObject MainHer;
+    private GameObject Block;    
+    private GameObject PauseUIGO;
     private Sprite HeadEqSprite;
-    private List<Sprite> Anws = new List<Sprite>();
-    private List<GameObject> ActivEntry = new List<GameObject>();
-    private GameObject EntryPaernt;
+    private List<Sprite> Anws = new List<Sprite>();    
     void Start()
     {
         FolderPath = System.IO.Path.Combine(FolderPath, FolderNuber.ToString());
-        init_eq = gameObject.transform.Find("Equ").Find("Eq Viewport").Find("Content").Find("Equation").gameObject;
-        //init_eq = GameObject.Find("Equation");
-        head_eq = gameObject.transform.Find("Equ").Find("HeadEquation").gameObject;
-        //head_eq = GameObject.Find("HeadEquation");
-        EntryPaernt = gameObject.transform.Find("Equ").Find("Eq Viewport").Find("Content").gameObject;
-        //EntryPaernt = GameObject.Find("Content");
         Block = gameObject.transform.Find("Block").gameObject;
-        //Block = GameObject.Find("Block");
-        PanelMsg = GameObject.Find("PanelMessage");
-        MainHer = GameObject.Find("MainCharacter");
-        init_eq.SetActive(false);
+        //Block = GameObject.Find("Block");        
+        PauseUIGO = GameObject.Find("MenuCtl");
         FolderPath = System.IO.Directory.GetDirectories(FolderPath)[Random.Range(0, System.IO.Directory.GetDirectories(FolderPath).Length)];
-        SetAnwsers();
-        head_eq.GetComponent<SpriteRenderer>().sprite = HeadEqSprite;
-        for (int i = 0; i < 4; i++)
-        {
-            GameObject element = Instantiate(init_eq);
-            ActivEntry.Add(element);
-            element.GetComponent<SpriteRenderer>().sprite = Anws[i];
-            element.transform.SetParent(EntryPaernt.transform);
-            element.transform.GetChild(0).GetComponentInChildren<SpriteRenderer>().sprite = Keys_Sprt[i];
-            element.SetActive(true);
-        }
-    }
-    private void CheckAnwser(int number)
-    {
-        if (PanelMsg.transform.Find("Text").GetComponent<Text>().IsActive())
-        {
-            return;
-        }
-        if (Anws[number].name == "a")
-        {
-            gameObject.transform.Find("Equ").GetComponent<Collider2D>().enabled=false;
-            Block.GetComponent<SpriteRenderer>().enabled = false;
-            Block.GetComponent<Collider2D>().enabled = false;
-            PanelMsg.transform.Find("Text").GetComponent<Text>().text = "Верно!";
-            PanelMsg.GetComponent<Animator>().SetTrigger("OK");
-            return;
-        }
-        PanelMsg.transform.Find("Text").GetComponent<Text>().text = "не верно";
-        PanelMsg.GetComponent<Animator>().SetTrigger("Not_ok");
-        MainHer.GetComponent<PlayerController_v3>().Add_Health(-1);        
-        if(!(MainHer.GetComponent<PlayerController_v3>().GetHealth > 0))
-        {
-            GameObject.Find("MenuCtl").GetComponent<PauseUI>().Defeat();
-        }
+        SetAnwsers();        
     }
     // Update is called once per frame
     void Update()
@@ -118,16 +71,20 @@ public class Question : MonoBehaviour
             Anws[n] = tmp;
         }
     }
+    public void PassQuestion()
+    {
+        //gameObject.transform.Find("Equ").GetComponent<Collider2D>().enabled = false;
+        Block.GetComponent<SpriteRenderer>().enabled = false;
+        Block.GetComponent<Collider2D>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.name == "MainCharacter")
         {
-            for (int i = 0; i < 4; i++)
+            if (Input.GetKey(InteractKey))
             {
-                if (Input.GetKey(KeysCodes[i]))
-                {
-                    CheckAnwser(i);
-                }
+                PauseUIGO.GetComponent<PauseUI>().DisplayEq(HeadEqSprite,Anws,this);
             }
         }
     }

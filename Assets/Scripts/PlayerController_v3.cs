@@ -59,6 +59,8 @@ public class PlayerController_v3 : MonoBehaviour
     public Vector2 char_mov { get { return mov_pos; } }  // w/o prw_pos
     public int Fly_animation_cooldown_frames = 25; // default : 50 FUPS
     private int Fly_animation_cooldown_frames_cnt;
+    private bool stun_mov = false;
+    public bool stun_player_mov { set { stun_mov = value; } }
     Vector2 lookDirection = new Vector2(1, 0);
     Animator animator;
     Rigidbody2D rigidbody2d;
@@ -95,6 +97,12 @@ public class PlayerController_v3 : MonoBehaviour
         last_FixedUpdate_time = Time.fixedTime;
         TimePlayed= (last_FixedUpdate_time - game_timer_offset);
         Timer.text = TimePlayed.ToString("F2");
+        if (stun_mov)
+        {
+            animator.SetFloat("Move X", lookDirection.x);
+            animator.SetFloat("Move X_mag",0);
+            return;
+        }
         if (dead)
         {
             speed_boost_time = 0;
@@ -104,7 +112,7 @@ public class PlayerController_v3 : MonoBehaviour
             return;
         }
         in_flight_last_frame_processed = true;        
-        if (in_flight && rigidbody2d.position.y == prw_pos.y && Mathf.Approximately(rigidbody2d.position.y, 0)) //its not possible
+        if (in_flight && rigidbody2d.position.y == prw_pos.y && Mathf.Approximately(rigidbody2d.position.y, 0)) //its not possible (btw)
         {
             Debug.Log(rigidbody2d.position.y == prw_pos.y);
             Flight_hard_reset();

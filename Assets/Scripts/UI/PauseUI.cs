@@ -12,7 +12,16 @@ public class PauseUI : MonoBehaviour
     //private ResultsCanvasCtrl ResCnvCtl;
     private GameObject AboutPanel;
     private GameObject DefeatPanel;
+    private GameObject init_eq;
+    private GameObject head_eq;
+    private GameObject EntryPaernt;
+    private GameObject PanelMsg;
+    private GameObject EquGo;
+    private Question LastCalledQ;
+    public List<Sprite> Keys_Sprt;
     private PlayerController_v3 Playerctl;
+    public List<KeyCode> KeysCodes;
+    private List<GameObject> ActivEntry = new List<GameObject>();
     private bool defeat = false;
     private const string FinalTxt = "Поздравляю, вы сдали экзамен!\n Ваш результат : {0}";
     //ScoreCnt ScoreTableCnt;
@@ -23,6 +32,15 @@ public class PauseUI : MonoBehaviour
         //ScoreTableCnt = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
         AboutPanel = GameObject.Find("About panel");
         DefeatPanel = GameObject.Find("DefeatPanel");
+        //init_eq = gameObject.transform.Find("Equ").Find("Eq Viewport").Find("Content").Find("Equation").gameObject;
+        init_eq = GameObject.Find("Equation");
+        //head_eq = gameObject.transform.Find("Equ").Find("HeadEquation").gameObject;
+        head_eq = GameObject.Find("HeadEquation");
+        //EntryPaernt = gameObject.transform.Find("Equ").Find("Eq Viewport").Find("Content").gameObject;
+        EntryPaernt = GameObject.Find("Content");
+        EquGo = GameObject.Find("Equ");
+        PanelMsg = GameObject.Find("PanelMessage");
+        Playerctl = GameObject.Find("MainCharacter").GetComponent<PlayerController_v3>();
         ResetAllWindows();
     }
     private void Update()
@@ -33,6 +51,10 @@ public class PauseUI : MonoBehaviour
         {
             CangeMenuStatus(true);
             return;
+        }
+        if (EquGo.activeSelf)
+        {
+            KeyEqInput();
         }
         if (Input.GetKeyDown("escape") && MenuCnv.activeSelf)
         {
@@ -88,6 +110,38 @@ public class PauseUI : MonoBehaviour
         Time.timeScale = Convert.ToInt32(!status);
         BkgCnv.SetActive(status);
     }
+    private void ClearEqField()
+    {
+        foreach(var i in ActivEntry)
+        {
+            Destroy(i);
+        }
+        BkgAndTimeStop(false);
+        EquGo.SetActive(false);
+        Playerctl.stun_player_mov = false;
+    }
+    private void CheckAnwser(int number)
+    {
+        if (PanelMsg.transform.Find("Text").GetComponent<Text>().IsActive())
+        {
+            return;
+        }
+        if (ActivEntry[number].GetComponent<Image>().sprite.name == "a")
+        {
+            LastCalledQ.PassQuestion();
+            PanelMsg.transform.Find("Text").GetComponent<Text>().text = "Верно!";
+            PanelMsg.GetComponent<Animator>().SetTrigger("OK");
+            ClearEqField();
+            return;
+        }
+        PanelMsg.transform.Find("Text").GetComponent<Text>().text = "не верно";
+        PanelMsg.GetComponent<Animator>().SetTrigger("Not_ok");
+        Playerctl.Add_Health(-1);
+        if (!(Playerctl.GetHealth > 0))
+        {
+            Defeat();
+        }
+    }
     private void ResetAllWindows()
     {
         Time.timeScale = 1;
@@ -95,8 +149,39 @@ public class PauseUI : MonoBehaviour
         BkgCnv.SetActive(false);
         AboutPanel.SetActive(false);
         DefeatPanel.SetActive(false);
+        init_eq.SetActive(false);
+        EquGo.SetActive(false);
         //FinalCnv.SetActive(false);
         //ResCnvCtl.SetVisibility(false);
+    }
+    public void DisplayEq(Sprite Head, List<Sprite> Eq, Question CalledQuestion)
+    {
+        if (EquGo.activeSelf)
+            return;
+        Playerctl.stun_player_mov = true;
+        BkgCnv.SetActive(true);
+        EquGo.SetActive(true);
+        LastCalledQ = CalledQuestion;       
+        head_eq.GetComponent<Image>().sprite = Head;
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject element = Instantiate(init_eq);
+            ActivEntry.Add(element);
+            element.GetComponent<Image>().sprite = Eq[i];
+            element.transform.SetParent(EntryPaernt.transform);
+            element.transform.GetChild(0).GetComponentInChildren<Image>().sprite = Keys_Sprt[i];
+            element.SetActive(true);
+        }        
+    }
+    public void KeyEqInput()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (Input.GetKey(KeysCodes[i]))
+            {                
+                CheckAnwser(i);
+            }
+        }
     }
 
     public void FinalViaCollider(Collider2D collision)
@@ -112,7 +197,7 @@ public class PauseUI : MonoBehaviour
     public void EtapPass(Collision2D collision,string Etap)
     {
         BkgAndTimeStop(true);
-        Playerctl = collision.collider.GetComponent<PlayerController_v3>();
+        //Playerctl = collision.collider.GetComponent<PlayerController_v3>();
         //ScoreTableCnt.UpdateValueIfGreatherViaInnerKeys(Playerctl.GetTimePlayed, Etap);
         //ResCnvCtl.FillResTableByEtaps(GetEtapsID(), SceneManager.GetActiveScene().name);
         //ResCnvCtl.SetVisibility(true);

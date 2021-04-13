@@ -114,7 +114,8 @@ public class MainUI : MonoBehaviour
     }
     public void OnExitClick()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
+        Debug.LogError("Exit error");
         Application.Quit();
     }
     private void ResetToStartState()

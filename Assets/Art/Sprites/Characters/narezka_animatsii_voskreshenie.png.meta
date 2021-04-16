@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 1133f23f074a8a94cad40554ea6c95c8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2811326962389534611
+    second: narezka_animatsii_voskreshenie_0
+  - first:
+      213: 4765970826023260979
+    second: narezka_animatsii_voskreshenie_1
+  - first:
+      213: 3862958210435446879
+    second: narezka_animatsii_voskreshenie_2
+  - first:
+      213: -3255642407665354849
+    second: narezka_animatsii_voskreshenie_3
+  - first:
+      213: -7789996337956776571
+    second: narezka_animatsii_voskreshenie_4
+  - first:
+      213: 6486437646058907095
+    second: narezka_animatsii_voskreshenie_5
+  - first:
+      213: -1405244417758567186
+    second: narezka_animatsii_voskreshenie_6
+  - first:
+      213: -5539219617415949025
+    second: narezka_animatsii_voskreshenie_7
+  - first:
+      213: -7949606825634008583
+    second: narezka_animatsii_voskreshenie_8
+  - first:
+      213: -3660272817902635565
+    second: narezka_animatsii_voskreshenie_9
+  - first:
+      213: 1341829779291033203
+    second: narezka_animatsii_voskreshenie_10
+  - first:
+      213: -3170526098020095972
+    second: narezka_animatsii_voskreshenie_11
+  - first:
+      213: -7429476343711721370
+    second: narezka_animatsii_voskreshenie_12
+  - first:
+      213: 5737015281710596295
+    second: narezka_animatsii_voskreshenie_13
+  - first:
+      213: -7627349536687191185
+    second: narezka_animatsii_voskreshenie_14
+  - first:
+      213: -3519402719632922101
+    second: narezka_animatsii_voskreshenie_15
+  - first:
+      213: 4400145748128959650
+    second: narezka_animatsii_voskreshenie_16
+  - first:
+      213: -430794526571045832
+    second: narezka_animatsii_voskreshenie_17
+  - first:
+      213: 3721446507943622492
+    second: narezka_animatsii_voskreshenie_18
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d683b43d5092cf8d0800000000000000
+      internalID: -2811326962389534611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_1
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 0
+        width: 14
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 333ddfe0731242240800000000000000
+      internalID: 4765970826023260979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_2
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f58fe2b860cfb9530800000000000000
+      internalID: 3862958210435446879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_3
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f97b867ba72a1d2d0800000000000000
+      internalID: -3255642407665354849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5851e729a9f54e390800000000000000
+      internalID: -7789996337956776571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_5
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d5ef072ca4740a50800000000000000
+      internalID: 6486437646058907095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_6
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee466e8b5a19f7ce0800000000000000
+      internalID: -1405244417758567186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_7
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f151c032b1db023b0800000000000000
+      internalID: -5539219617415949025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_8
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f1701ef5b25da190800000000000000
+      internalID: -7949606825634008583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_9
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d535ebd349143dc0800000000000000
+      internalID: -3660272817902635565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_10
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37eceaf23132f9210800000000000000
+      internalID: 1341829779291033203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_11
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c182860ef470004d0800000000000000
+      internalID: -3170526098020095972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_12
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66815e1e0a235e890800000000000000
+      internalID: -7429476343711721370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_13
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c00951b009fd9f40800000000000000
+      internalID: 5737015281710596295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_14
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6b05000206362690800000000000000
+      internalID: -7627349536687191185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_15
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0a6cb28fd1982fc0800000000000000
+      internalID: -3519402719632922101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_16
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ac0c25be35701d30800000000000000
+      internalID: 4400145748128959650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_17
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83cdc8819a2850af0800000000000000
+      internalID: -430794526571045832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narezka_animatsii_voskreshenie_18
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 0
+        width: 14.052631
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c57f894c1eb35a330800000000000000
+      internalID: 3721446507943622492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

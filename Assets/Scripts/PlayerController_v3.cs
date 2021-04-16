@@ -105,10 +105,19 @@ public class PlayerController_v3 : MonoBehaviour
         }
         if (dead)
         {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("take_damage"))
+            {
+                return;
+            }
             speed_boost_time = 0;
             rigidbody2d.position = last_checkpoint;
             dead = false;
             //Add_Health(-1);            
+            return;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("spawn"))
+        {
+            rigidbody2d.position = last_checkpoint;
             return;
         }
         in_flight_last_frame_processed = true;        
@@ -233,9 +242,10 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.name == "Spikes" && Time.fixedTime > InvulnerableTime)
+        if (collision.collider.name == "Spikes" && Time.fixedTime > InvulnerableTime && !dead)
         {
             dead = true;
+            animator.SetTrigger("Damage");
         }
         if (in_flight_last_frame_processed)
         {

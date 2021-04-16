@@ -9,6 +9,7 @@ public class Health_ctl : MonoBehaviour
     public List<GameObject> healths;
     private void Awake()
     {
+        healths.Reverse();
         instance = this;
         Activate_all_health();        
     }
@@ -16,14 +17,14 @@ public class Health_ctl : MonoBehaviour
     {
         for(int i=0;i<healths.Count;i++)
         {
-            healths[i].SetActive((i + 1) > hp);
+            healths[i].SetActive(!((i + 1) > hp));
         }
     }
     private void Activate_all_health()
     {
         foreach(var img in healths)
         {
-            img.SetActive(false);
+            img.SetActive(true);
         }
     }
 }

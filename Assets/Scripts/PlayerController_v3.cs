@@ -242,7 +242,7 @@ public class PlayerController_v3 : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.name == "Spikes" && Time.fixedTime > InvulnerableTime && !dead)
+        if ((collision.collider.name == "Spikes" || collision.collider.name.Contains("Laser")) && Time.fixedTime > InvulnerableTime && !dead)
         {
             dead = true;
             animator.SetTrigger("Damage");

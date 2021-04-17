@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Final.cs" />
     <Compile Include="Assets\Scripts\Health_ctl.cs" />
     <Compile Include="Assets\Scripts\IinvulnerableAdder.cs" />
+    <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\MovBlock.cs" />
     <Compile Include="Assets\Scripts\MovPlatform.cs" />
     <Compile Include="Assets\Scripts\NPC1.cs" />

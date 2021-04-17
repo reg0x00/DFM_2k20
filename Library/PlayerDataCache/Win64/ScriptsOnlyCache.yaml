@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - CheckPoint
+    - Final
     - Health_ctl
     - MovPlatform
     - PauseUI
@@ -16,8 +17,6 @@ ScriptsOnlyBuild:
     - Cinemachine.CinemachineVirtualCamera
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
-    - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
     Unity.Rider.Editor.dll:
@@ -111,6 +110,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12590}
     - Class: 114
       Script: {instanceID: 12824}
+    - Class: 114
+      Script: {instanceID: 12890}
     - Class: 114
       Script: {instanceID: 12964}
     - Class: 114
@@ -446,7 +447,7 @@ ScriptsOnlyBuild:
     className: RestoreHealth
   - hash:
       serializedVersion: 2
-      Hash: 13d7eab354a91f05a730626f8c960f8f
+      Hash: f082b6c18ab58bd600ff1ad48ef4de43
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Question
@@ -746,7 +747,7 @@ ScriptsOnlyBuild:
     className: TutorText
   - hash:
       serializedVersion: 2
-      Hash: ed198889ff2440158b7af12f8dd72dd9
+      Hash: eb6fddb95ab3c3c11deaba1dae51c0b1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PauseUI
@@ -873,4 +874,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/lite.unity
-  playerPath: C:/Users/yurvo/Desktop/test/Platformer.exe
+  playerPath: C:/Users/yurvo/Desktop/tst/Platformer.exe

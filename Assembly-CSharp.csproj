@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Collectibles.cs" />
     <Compile Include="Assets\Scripts\Collectibles_ctl.cs" />
     <Compile Include="Assets\Scripts\Final.cs" />
+    <Compile Include="Assets\Scripts\GravChangeColl.cs" />
     <Compile Include="Assets\Scripts\Health_ctl.cs" />
     <Compile Include="Assets\Scripts\IinvulnerableAdder.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />

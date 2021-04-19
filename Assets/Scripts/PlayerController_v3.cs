@@ -107,8 +107,10 @@ public class PlayerController_v3 : MonoBehaviour
         {
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("take_damage"))
             {
+                GetComponent<Rigidbody2D>().simulated = false;
                 return;
             }
+            GetComponent<Rigidbody2D>().simulated = true;
             speed_boost_time = 0;
             rigidbody2d.position = last_checkpoint;
             dead = false;

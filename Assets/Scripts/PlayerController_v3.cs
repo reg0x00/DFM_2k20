@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController_v3 : MonoBehaviour
@@ -35,7 +33,7 @@ public class PlayerController_v3 : MonoBehaviour
     public float get_last_FU_time { get { return last_FixedUpdate_time; } }
     bool remote_next_frame_is_flip = false; // for high priority of charter
     public bool remote_NF_flip { set { remote_next_frame_is_flip = value; } }
-    private float TimePlayed=0.0f;
+    private float TimePlayed = 0.0f;
     public float GetTimePlayed { get { return TimePlayed; } }
     Vector2 last_checkpoint;
     int last_checkpoint_priority;
@@ -89,18 +87,18 @@ public class PlayerController_v3 : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
         //Debug.Log(1 / Time.deltaTime);
     }
     private void FixedUpdate()
     {
         last_FixedUpdate_time = Time.fixedTime;
-        TimePlayed= (last_FixedUpdate_time - game_timer_offset);
+        TimePlayed = (last_FixedUpdate_time - game_timer_offset);
         Timer.text = TimePlayed.ToString("F2");
         if (stun_mov)
         {
             animator.SetFloat("Move X", lookDirection.x);
-            animator.SetFloat("Move X_mag",0);
+            animator.SetFloat("Move X_mag", 0);
             return;
         }
         if (dead)
@@ -122,7 +120,7 @@ public class PlayerController_v3 : MonoBehaviour
             rigidbody2d.position = last_checkpoint;
             return;
         }
-        in_flight_last_frame_processed = true;        
+        in_flight_last_frame_processed = true;
         if (in_flight && rigidbody2d.position.y == prw_pos.y && Mathf.Approximately(rigidbody2d.position.y, 0)) //its not possible (btw)
         {
             Debug.Log(rigidbody2d.position.y == prw_pos.y);
@@ -134,17 +132,17 @@ public class PlayerController_v3 : MonoBehaviour
         if (!Mathf.Approximately(horizontal, 0.0f))
         {
             lookDirection.Set(horizontal, 0);
-            lookDirection.Normalize();         
+            lookDirection.Normalize();
         }
         if (in_flight)
             drag = false;
-        if(last_FixedUpdate_time< InvulnerableTime)
+        if (last_FixedUpdate_time < InvulnerableTime)
         {
             InvSprt.GetComponent<SpriteRenderer>().enabled = true;
-            if((InvulnerableTime- last_FixedUpdate_time)< InvSprtStartAnimation)
+            if ((InvulnerableTime - last_FixedUpdate_time) < InvSprtStartAnimation)
             {
                 InvSprt.enabled = true;
-                InvSprt.speed = (1 - (InvulnerableTime - last_FixedUpdate_time) / InvSprtStartAnimation)*InvSprtMaxSpeed;
+                InvSprt.speed = (1 - (InvulnerableTime - last_FixedUpdate_time) / InvSprtStartAnimation) * InvSprtMaxSpeed;
             }
             else
             {
@@ -157,7 +155,7 @@ public class PlayerController_v3 : MonoBehaviour
             InvSprt.GetComponent<SpriteRenderer>().enabled = false;
         }
         animator.SetFloat("Move X", lookDirection.x);
-        animator.SetFloat("Move X_mag",Mathf.Abs(horizontal));
+        animator.SetFloat("Move X_mag", Mathf.Abs(horizontal));
         animator.SetBool("On_ladder", turn_on_ladder_animatron);
         animator.SetFloat("Move_Y", Input.GetAxis("Vertical"));
         animator.SetBool("Is_dragging", drag);
@@ -185,7 +183,7 @@ public class PlayerController_v3 : MonoBehaviour
         else if (default_speed != speed)
         {
             speed = default_speed;
-        }        
+        }
         if (on_ladder && y_speed <= 0.0F)
         {
             animator.SetBool("Jump", false);
@@ -332,11 +330,11 @@ public class PlayerController_v3 : MonoBehaviour
             HealthAnimator.SetTrigger("Removing_health");
         }
         health += x;
-        health_is_full = (health==max_health);
+        health_is_full = (health == max_health);
         Health_ctl.instance.UpdateHealth(health);
     }
     public void ResetTime()
     {
-        game_timer_offset= Time.fixedTime;
+        game_timer_offset = Time.fixedTime;
     }
 }

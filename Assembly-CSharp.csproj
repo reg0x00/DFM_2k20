@@ -81,6 +81,8 @@
     <Compile Include="Assets\Scripts\Obsolete\PlayerController_v2.cs" />
     <Compile Include="Assets\Scripts\Obsolete\ScoreCnt (by scene).cs" />
     <Compile Include="Assets\Scripts\ParallaxLayer.cs" />
+    <Compile Include="Assets\Scripts\Phantom.cs" />
+    <Compile Include="Assets\Scripts\PhantomsZone.cs" />
     <Compile Include="Assets\Scripts\PlayerController_v3.cs" />
     <Compile Include="Assets\Scripts\Question.cs" />
     <Compile Include="Assets\Scripts\RestoreHealth.cs" />

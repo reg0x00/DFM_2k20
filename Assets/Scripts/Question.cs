@@ -1,25 +1,27 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Question : MonoBehaviour
 {
     // Start is called before the first frame update
     public int FolderNuber;
+    public int possibleanws;
     public KeyCode InteractKey;
-    private string FolderPath = "Assets/Resources/Equations";
-    private GameObject Block;    
+    private string FolderName = "Equations";
+    private GameObject Block;
     private GameObject PauseUIGO;
     private Sprite HeadEqSprite;
-    private List<Sprite> Anws = new List<Sprite>();    
+    private List<Sprite> Anws = new List<Sprite>();
     void Start()
     {
-        FolderPath = System.IO.Path.Combine(FolderPath, FolderNuber.ToString());
+        FolderName = FolderName +"/" + FolderNuber.ToString();
+        //FolderName = System.IO.Path.Combine(FolderName, FolderNuber.ToString());
         Block = gameObject.transform.Find("Block").gameObject;
         //Block = GameObject.Find("Block");        
         PauseUIGO = GameObject.Find("MenuCtl");
-        FolderPath = System.IO.Directory.GetDirectories(FolderPath)[Random.Range(0, System.IO.Directory.GetDirectories(FolderPath).Length)];
-        SetAnwsers();        
+        //FolderName = System.IO.Directory.GetDirectories(FolderName)[Random.Range(1, possibleanws + 1)];
+        FolderName = FolderName+"/"+ (Random.Range(0, possibleanws)+1).ToString();
+        SetAnwsers();
     }
     // Update is called once per frame
     void Update()
@@ -29,23 +31,20 @@ public class Question : MonoBehaviour
     private void SetAnwsers()
     {
         Sprite r_eq = null;
-        foreach (var i in System.IO.Directory.GetFiles(FolderPath))
+        foreach (var i in Resources.LoadAll<Sprite>(FolderName))
         {
-            if (!i.Contains(".meta"))
-            {
-                if (System.IO.Path.GetFileNameWithoutExtension(i).Equals("a"))
+                if (i.name.Equals("a"))
                 {
-                    r_eq = Resources.Load<Sprite>(System.IO.Path.ChangeExtension(i, null).Replace("Assets/Resources/", ""));
+                    r_eq = i;
                     continue;
                 }
                 //Debug.Log(System.IO.Path.GetFileNameWithoutExtension(i));
-                if (System.IO.Path.GetFileNameWithoutExtension(i).Equals("e"))
+                if (i.name.Equals("e"))
                 {
-                    HeadEqSprite = Resources.Load<Sprite>(System.IO.Path.ChangeExtension(i, null).Replace("Assets/Resources/", ""));
+                    HeadEqSprite = i;
                     continue;
                 }
-                Anws.Add(Resources.Load<Sprite>(System.IO.Path.ChangeExtension(i, null).Replace("Assets/Resources/", "")));
-            }
+                Anws.Add(i);
         }
         int n = Anws.Count;
         while (n > 1)
@@ -84,7 +83,7 @@ public class Question : MonoBehaviour
         {
             if (Input.GetKey(InteractKey))
             {
-                PauseUIGO.GetComponent<PauseUI>().DisplayEq(HeadEqSprite,Anws,this);
+                PauseUIGO.GetComponent<PauseUI>().DisplayEq(HeadEqSprite, Anws, this);
             }
         }
     }

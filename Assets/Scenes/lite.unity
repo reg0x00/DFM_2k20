@@ -9502,16 +9502,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GarviFiled (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8435640745155688854, guid: 2220d9aaa69b87a4fbafca916144eec6,
-        type: 3}
-      propertyPath: jump_height
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8435640745155688854, guid: 2220d9aaa69b87a4fbafca916144eec6,
-        type: 3}
-      propertyPath: Y_atten
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2220d9aaa69b87a4fbafca916144eec6, type: 3}
 --- !u!1001 &508613130

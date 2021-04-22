@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FolderNuber: 1
-  InteractKey: 101
+  InteractKey: 13
 --- !u!50 &6333400207701651263
 Rigidbody2D:
   serializedVersion: 4

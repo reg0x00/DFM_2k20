@@ -20,11 +20,15 @@ public class GravChangeColl : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        orig_gravity = PlayerGO.GetComponent<PlayerController_v3>().gravity;
-        PlayerGO.GetComponent<PlayerController_v3>().gravity = gravity;
+        if (collision.GetComponent<PlayerController_v3>())
+        {
+            orig_gravity = PlayerGO.GetComponent<PlayerController_v3>().gravity;
+            PlayerGO.GetComponent<PlayerController_v3>().gravity = gravity;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        PlayerGO.GetComponent<PlayerController_v3>().gravity = orig_gravity;
+        if (collision.GetComponent<PlayerController_v3>())
+            PlayerGO.GetComponent<PlayerController_v3>().gravity = orig_gravity;
     }
 }

@@ -25,6 +25,8 @@ public class PauseUI : MonoBehaviour
     private List<GameObject> ActivEntry = new List<GameObject>();
     private List<GameObject> ActiveButtonGO = new List<GameObject>();
     private bool defeat = false;
+    private string KeyImgName = "Key Image";
+    private List<GameObject> KeyImgDisplayed = new List<GameObject>();
     private const string FinalTxt = "Поздравляю, вы сдали экзамен!\n Ваш результат : {0}";
     //ScoreCnt ScoreTableCnt;
     // Start is called before the first frame update
@@ -58,7 +60,7 @@ public class PauseUI : MonoBehaviour
                 {
                     Button tmp_bt = ActiveButtonGO[i].GetComponent<Button>();
                     ActiveButtonGO.Clear();
-                    tmp_bt.onClick.Invoke();                    
+                    tmp_bt.onClick.Invoke();
                 }
             }
         }
@@ -89,14 +91,31 @@ public class PauseUI : MonoBehaviour
     void BindKeysToBtn(GameObject target)
     {
         ActiveButtonGO.Clear();
+        foreach(GameObject obj in KeyImgDisplayed)
+        {
+            Destroy(obj);
+        }
+        KeyImgDisplayed.Clear();
         if (!target)
             return;
+
         for (int i = 0; i < target.transform.childCount; i++)
         {
-            Transform ch = target.transform.GetChild(i);
-            if (ch.GetComponent<Button>())
+            Transform BtnChildTr = target.transform.GetChild(i);
+            if (BtnChildTr.GetComponent<Button>())
             {
-                ActiveButtonGO.Add(ch.gameObject);                
+                ActiveButtonGO.Add(BtnChildTr.gameObject);
+                GameObject new_go = new GameObject();
+                new_go.transform.SetParent(BtnChildTr);
+                new_go.AddComponent<RectTransform>();
+                new_go.AddComponent<CanvasRenderer>();
+                new_go.AddComponent<Image>();
+                new_go.GetComponent<Image>().sprite = Keys_Sprt[KeyImgDisplayed.Count];
+                RectTransform new_rt = new_go.GetComponent<RectTransform>();
+                new_rt.sizeDelta = new Vector2(BtnChildTr.GetComponent<RectTransform>().rect.height, BtnChildTr.GetComponent<RectTransform>().rect.height);
+                new_rt.position = new Vector3(BtnChildTr.GetComponent<RectTransform>().position.x - BtnChildTr.GetComponent<RectTransform>().rect.width / (float)1.5, BtnChildTr.GetComponent<RectTransform>().position.y, 0);
+                new_rt.name = KeyImgName;
+                KeyImgDisplayed.Add(new_go);
             }
         }
     }

@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class PauseUI : MonoBehaviour
 {
@@ -23,6 +23,7 @@ public class PauseUI : MonoBehaviour
     private PlayerController_v3 Playerctl;
     public List<KeyCode> KeysCodes;
     private List<GameObject> ActivEntry = new List<GameObject>();
+    private List<GameObject> ActiveButtonGO = new List<GameObject>();
     private bool defeat = false;
     private const string FinalTxt = "Поздравляю, вы сдали экзамен!\n Ваш результат : {0}";
     //ScoreCnt ScoreTableCnt;
@@ -49,6 +50,18 @@ public class PauseUI : MonoBehaviour
     {
         if (defeat)
             return;
+        if (ActiveButtonGO.Count != 0)
+        {
+            for (int i = 0; i < ActiveButtonGO.Count; i++)
+            {
+                if (Input.GetKeyDown(KeysCodes[i]))
+                {
+                    Button tmp_bt = ActiveButtonGO[i].GetComponent<Button>();
+                    ActiveButtonGO.Clear();
+                    tmp_bt.onClick.Invoke();                    
+                }
+            }
+        }
         if (Input.GetKeyDown("escape") && Time.timeScale != 0)
         {
             CangeMenuStatus(true);
@@ -73,11 +86,26 @@ public class PauseUI : MonoBehaviour
         //    SetNextEtap();
         //}
     }
+    void BindKeysToBtn(GameObject target)
+    {
+        ActiveButtonGO.Clear();
+        if (!target)
+            return;
+        for (int i = 0; i < target.transform.childCount; i++)
+        {
+            Transform ch = target.transform.GetChild(i);
+            if (ch.GetComponent<Button>())
+            {
+                ActiveButtonGO.Add(ch.gameObject);                
+            }
+        }
+    }
     public void Defeat()
     {
         defeat = true;
         Time.timeScale = Convert.ToInt32(false);
         DefeatPanel.SetActive(true);
+        BindKeysToBtn(DefeatPanel);
         BkgCnv.SetActive(true);
     }
     public void ReturnBtn()
@@ -95,25 +123,43 @@ public class PauseUI : MonoBehaviour
     }
     public void DisplayAboutWindowOnly()
     {
-        foreach(Transform cmp in MenuCnv.transform)
+        foreach (Transform cmp in MenuCnv.transform)
         {
             cmp.gameObject.SetActive(false);
         }
         MenuCnv.SetActive(true);
         AboutPanel.SetActive(true);
+        BindKeysToBtn(AboutPanel);
     }
     public void DisplayAboutWindow()
     {
         AboutPanel.SetActive(true);
+        BindKeysToBtn(AboutPanel);
     }
     public void ResetAboutWindow()
     {
         AboutPanel.SetActive(false);
+        if (FinalCnv.activeSelf)
+        {
+            BindKeysToBtn(FinalCnv);
+        }
+        else
+        {
+            BindKeysToBtn(MenuCnv);
+        }
     }
     private void CangeMenuStatus(bool status)
     {
         Time.timeScale = Convert.ToInt32(!status);
         MenuCnv.SetActive(status);
+        if (status)
+        {
+            BindKeysToBtn(MenuCnv);
+        }
+        else
+        {
+            BindKeysToBtn(null);
+        }
         BkgCnv.SetActive(status);
     }
     private void BkgAndTimeStop(bool status)
@@ -123,7 +169,7 @@ public class PauseUI : MonoBehaviour
     }
     private void ClearEqField()
     {
-        foreach(var i in ActivEntry)
+        foreach (var i in ActivEntry)
         {
             Destroy(i);
         }
@@ -174,7 +220,7 @@ public class PauseUI : MonoBehaviour
         Playerctl.stun_player_mov = true;
         BkgCnv.SetActive(true);
         EquGo.SetActive(true);
-        LastCalledQ = CalledQuestion;       
+        LastCalledQ = CalledQuestion;
         head_eq.GetComponent<Image>().sprite = Head;
         for (int i = 0; i < 4; i++)
         {
@@ -184,14 +230,14 @@ public class PauseUI : MonoBehaviour
             element.transform.SetParent(EntryPaernt.transform);
             element.transform.GetChild(0).GetComponentInChildren<Image>().sprite = Keys_Sprt[i];
             element.SetActive(true);
-        }        
+        }
     }
     public void KeyEqInput()
     {
         for (int i = 0; i < 4; i++)
         {
             if (Input.GetKey(KeysCodes[i]))
-            {                
+            {
                 CheckAnwser(i);
             }
         }
@@ -205,10 +251,11 @@ public class PauseUI : MonoBehaviour
         //FinalCnv.SetActive(true);
         BkgCnv.SetActive(true);
         FinalCnv.SetActive(true);
+        BindKeysToBtn(FinalCnv);
         //string FinalEtap = GameObject.Find("Collectibles").GetComponent<Collectibles_ctl>().GetLastEtap;
         //ScoreTableCnt.UpdateValueIfGreatherViaInnerKeys(ctl.GetTimePlayed,FinalEtap);
     }
-    public void EtapPass(Collision2D collision,string Etap)
+    public void EtapPass(Collision2D collision, string Etap)
     {
         BkgAndTimeStop(true);
         //Playerctl = collision.collider.GetComponent<PlayerController_v3>();

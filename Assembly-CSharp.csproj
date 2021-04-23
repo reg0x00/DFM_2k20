@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ChangeKeyGuideImage.cs" />
     <Compile Include="Assets\Scripts\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Collectibles.cs" />
     <Compile Include="Assets\Scripts\Collectibles_ctl.cs" />

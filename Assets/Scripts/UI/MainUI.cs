@@ -14,6 +14,7 @@ public class MainUI : MonoBehaviour
     public GameObject CollisionNameCanv;
     public GameObject ResultsCanv;
     ScoreCnt ScoreTable;
+    private KeyCode ExitKey;
     private string SelectedScene;
     private ResultsCanvasCtrl ResCnvCtl;
     public Text TextInputField;
@@ -24,17 +25,25 @@ public class MainUI : MonoBehaviour
         ScoreTable = GameObject.Find("TableCtl").GetComponent<ScoreCnt>();
         ResCnvCtl = ResultsCanv.GetComponent<ResultsCanvasCtrl>();
         ResetToStartState();
+        if (Input.GetJoystickNames().Length == 0)
+        {
+            ExitKey = KeyCode.Escape;
+        }
+        else
+        {
+            ExitKey = KeyCode.Joystick1Button6;
+        }
     }
     private void Update()
     {
-        if (LvlCnv.activeSelf && Input.GetKeyDown("escape"))
+        if (LvlCnv.activeSelf && Input.GetKeyDown(ExitKey))
         {
             OnBackToMnuClick();
             return;
         }
         if (!MainCnv.activeSelf && !LvlCnv.activeSelf && EnterNameCnv.activeSelf)
         {
-            if (Input.GetKeyDown("escape"))
+            if (Input.GetKeyDown(ExitKey))
             {
                 BackToLvls();
                 return;
@@ -50,12 +59,12 @@ public class MainUI : MonoBehaviour
             GetInputFromEnterName();
             return;
         }
-        if (CollisionNameCanv.activeSelf && Input.GetKeyDown("escape"))
+        if (CollisionNameCanv.activeSelf && Input.GetKeyDown(ExitKey))
         {
             BackInNameFromCollisionWarn();
             return;
         }
-        if(ResCnvCtl.VisibleState && Input.GetKeyDown("escape"))
+        if(ResCnvCtl.VisibleState && Input.GetKeyDown(ExitKey))
         {
             LvlCnv.SetActive(true);
             ResCnvCtl.SetVisibility(false);

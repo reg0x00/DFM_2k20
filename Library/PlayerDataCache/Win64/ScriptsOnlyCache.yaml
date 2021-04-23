@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - ChangeKeyGuideImage
     - CheckPoint
     - Final
     - GravChangeColl
@@ -32,8 +33,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -89,59 +92,61 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 598}
     - Class: 114
-      Script: {instanceID: 11238}
+      Script: {instanceID: 11176}
     - Class: 114
-      Script: {instanceID: 11320}
+      Script: {instanceID: 11258}
     - Class: 114
-      Script: {instanceID: 11322}
+      Script: {instanceID: 11260}
     - Class: 114
-      Script: {instanceID: 11418}
+      Script: {instanceID: 11356}
     - Class: 114
-      Script: {instanceID: 11464}
+      Script: {instanceID: 11402}
     - Class: 114
-      Script: {instanceID: 11496}
+      Script: {instanceID: 11434}
     - Class: 114
-      Script: {instanceID: 11516}
+      Script: {instanceID: 11454}
     - Class: 114
-      Script: {instanceID: 11588}
+      Script: {instanceID: 11526}
     - Class: 114
-      Script: {instanceID: 11658}
+      Script: {instanceID: 11596}
     - Class: 114
-      Script: {instanceID: 11680}
+      Script: {instanceID: 11618}
     - Class: 114
-      Script: {instanceID: 11902}
+      Script: {instanceID: 11840}
     - Class: 114
-      Script: {instanceID: 11948}
+      Script: {instanceID: 11886}
     - Class: 114
-      Script: {instanceID: 12056}
+      Script: {instanceID: 11994}
     - Class: 114
-      Script: {instanceID: 12078}
+      Script: {instanceID: 12016}
     - Class: 114
-      Script: {instanceID: 12224}
+      Script: {instanceID: 12162}
     - Class: 114
-      Script: {instanceID: 12340}
+      Script: {instanceID: 12278}
     - Class: 114
-      Script: {instanceID: 12356}
+      Script: {instanceID: 12294}
     - Class: 114
-      Script: {instanceID: 12398}
+      Script: {instanceID: 12336}
     - Class: 114
-      Script: {instanceID: 12660}
+      Script: {instanceID: 12554}
     - Class: 114
-      Script: {instanceID: 12894}
+      Script: {instanceID: 12600}
     - Class: 114
-      Script: {instanceID: 12914}
+      Script: {instanceID: 12834}
     - Class: 114
-      Script: {instanceID: 12962}
+      Script: {instanceID: 12854}
     - Class: 114
-      Script: {instanceID: 13036}
+      Script: {instanceID: 12902}
     - Class: 114
-      Script: {instanceID: 13050}
+      Script: {instanceID: 12976}
     - Class: 114
-      Script: {instanceID: 13086}
+      Script: {instanceID: 12990}
     - Class: 114
-      Script: {instanceID: 13248}
+      Script: {instanceID: 13026}
     - Class: 114
-      Script: {instanceID: 13274}
+      Script: {instanceID: 13188}
+    - Class: 114
+      Script: {instanceID: 13214}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -489,7 +494,7 @@ ScriptsOnlyBuild:
     className: RestoreHealth
   - hash:
       serializedVersion: 2
-      Hash: 3c971bf4a4459ba330652b68e5f38049
+      Hash: e459212dd86ff3484b841b845f1a99f9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Question
@@ -687,6 +692,12 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 1467db1a353cf59e291867557ce63f2f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ChangeKeyGuideImage
+  - hash:
+      serializedVersion: 2
       Hash: 1e3d6222ff533d213aab144eb854a53b
     assemblyName: Cinemachine.dll
     namespaceName: 
@@ -795,7 +806,7 @@ ScriptsOnlyBuild:
     className: TutorText
   - hash:
       serializedVersion: 2
-      Hash: eb6fddb95ab3c3c11deaba1dae51c0b1
+      Hash: 3f2a66094eb863fdd4c6834c00fc0819
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PauseUI

@@ -19,12 +19,17 @@ public class PauseUI : MonoBehaviour
     private GameObject EquGo;
     private GameObject FinalCnv;
     private Question LastCalledQ;
-    public List<Sprite> Keys_Sprt;
+    public List<Sprite> kb_Keys_Sprt;
+    public List<Sprite> Js_Keys_Sprt;
+    private List<Sprite> Keys_Sprt;
     private PlayerController_v3 Playerctl;
-    public List<KeyCode> KeysCodes;
+    public List<KeyCode> kb_keycodes;
+    public List<KeyCode> Js_key_codes;    
+    private List<KeyCode> KeysCodes;
     private List<GameObject> ActivEntry = new List<GameObject>();
     private List<GameObject> ActiveButtonGO = new List<GameObject>();
     private bool defeat = false;
+    private KeyCode ExitKey;
     private string KeyImgName = "Key Image";
     private List<GameObject> KeyImgDisplayed = new List<GameObject>();
     private const string FinalTxt = "Поздравляю, вы сдали экзамен!\n Ваш результат : {0}";
@@ -47,6 +52,19 @@ public class PauseUI : MonoBehaviour
         Playerctl = GameObject.Find("MainCharacter").GetComponent<PlayerController_v3>();
         FinalCnv = GameObject.Find("Final Cnv");
         ResetAllWindows();
+        if (Input.GetJoystickNames().Length == 0)
+        {
+            KeysCodes = kb_keycodes;
+            Keys_Sprt = kb_Keys_Sprt;
+            ExitKey = KeyCode.Joystick1Button6;
+            ExitKey = KeyCode.Escape;
+        }
+        else
+        {
+            KeysCodes = Js_key_codes;
+            Keys_Sprt = Js_Keys_Sprt;
+            ExitKey = KeyCode.Joystick1Button6;
+        }
     }
     private void Update()
     {
@@ -65,7 +83,7 @@ public class PauseUI : MonoBehaviour
         }
         if (defeat)
             return;
-        if (Input.GetKeyDown("escape") && Time.timeScale != 0)
+        if (Input.GetKeyDown(ExitKey) && Time.timeScale != 0)
         {
             CangeMenuStatus(true);
             return;
@@ -74,7 +92,7 @@ public class PauseUI : MonoBehaviour
         {
             KeyEqInput();
         }
-        if (Input.GetKeyDown("escape") && MenuCnv.activeSelf)
+        if (Input.GetKeyDown(ExitKey) && MenuCnv.activeSelf)
         {
             if (AboutPanel.activeSelf)
             {
@@ -84,7 +102,7 @@ public class PauseUI : MonoBehaviour
             CangeMenuStatus(false);
             return;
         }
-        //if (Input.GetKeyDown("escape") && ResCnvCtl.VisibleState)
+        //if (Input.GetKeyDown(ExitKey) && ResCnvCtl.VisibleState)
         //{
         //    SetNextEtap();
         //}

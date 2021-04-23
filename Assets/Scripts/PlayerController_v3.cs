@@ -91,7 +91,7 @@ public class PlayerController_v3 : MonoBehaviour
         //Debug.Log(1 / Time.deltaTime);
     }
     private void FixedUpdate()
-    {
+    {        
         last_FixedUpdate_time = Time.fixedTime;
         TimePlayed = (last_FixedUpdate_time - game_timer_offset);
         Timer.text = TimePlayed.ToString("F2");

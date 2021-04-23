@@ -7,7 +7,9 @@ public class Question : MonoBehaviour
     // Start is called before the first frame update
     public int FolderNuber;
     public int possibleanws;
-    public KeyCode InteractKey;
+    public KeyCode KeyMp_interactKey;
+    public KeyCode Js_interactKey;
+    private KeyCode InteractKey;
     private string FolderName = "Equations";
     private GameObject Block;
     private GameObject PauseUIGO;
@@ -26,6 +28,14 @@ public class Question : MonoBehaviour
         SetAnwsers();
         KeyInfo = gameObject.transform.Find("Canvas").transform.Find("KeyDownInfo").GetComponent<Image>();
         KeyInfo.enabled = false;
+        if (Input.GetJoystickNames().Length == 0)
+        {
+            InteractKey = KeyMp_interactKey;
+        }
+        else
+        {
+            InteractKey = Js_interactKey;
+        }
     }
     // Update is called once per frame
     void Update()

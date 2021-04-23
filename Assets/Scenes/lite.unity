@@ -5647,7 +5647,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.05
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5763,7 +5763,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.04
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -8105,7 +8105,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -129068,10 +129068,10 @@ RectTransform:
   m_Father: {fileID: 939661865}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -86.81, y: -551.24}
-  m_SizeDelta: {x: 173.51, y: 157.51}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -86.75, y: 80.76001}
+  m_SizeDelta: {x: 173.5, y: 161.51001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1895991084
 MonoBehaviour:
@@ -129122,7 +129122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyImg: {fileID: 21300000, guid: c1f7e70284e554147bc92e9ad5edde94, type: 3}
-  JsImge: {fileID: 21300000, guid: 86adc3c9994e4884aa74160cd2d28a7d, type: 3}
+  JsImge: {fileID: 21300000, guid: a5b15d88f5f3d8745ad5e6f11c2dbbb3, type: 3}
 --- !u!1 &1900004152
 GameObject:
   m_ObjectHideFlags: 0

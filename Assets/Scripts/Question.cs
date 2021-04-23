@@ -14,13 +14,13 @@ public class Question : MonoBehaviour
     private List<Sprite> Anws = new List<Sprite>();
     void Start()
     {
-        FolderName = FolderName +"/" + FolderNuber.ToString();
+        FolderName = FolderName + "/" + FolderNuber.ToString();
         //FolderName = System.IO.Path.Combine(FolderName, FolderNuber.ToString());
         Block = gameObject.transform.Find("Block").gameObject;
         //Block = GameObject.Find("Block");        
         PauseUIGO = GameObject.Find("MenuCtl");
         //FolderName = System.IO.Directory.GetDirectories(FolderName)[Random.Range(1, possibleanws + 1)];
-        FolderName = FolderName+"/"+ (Random.Range(0, possibleanws)+1).ToString();
+        FolderName = FolderName + "/" + (Random.Range(1, possibleanws + 1)).ToString();
         SetAnwsers();
     }
     // Update is called once per frame
@@ -33,18 +33,18 @@ public class Question : MonoBehaviour
         Sprite r_eq = null;
         foreach (var i in Resources.LoadAll<Sprite>(FolderName))
         {
-                if (i.name.Equals("a"))
-                {
-                    r_eq = i;
-                    continue;
-                }
-                //Debug.Log(System.IO.Path.GetFileNameWithoutExtension(i));
-                if (i.name.Equals("e"))
-                {
-                    HeadEqSprite = i;
-                    continue;
-                }
-                Anws.Add(i);
+            if (i.name.Equals("a"))
+            {
+                r_eq = i;
+                continue;
+            }
+            //Debug.Log(System.IO.Path.GetFileNameWithoutExtension(i));
+            if (i.name.Equals("e"))
+            {
+                HeadEqSprite = i;
+                continue;
+            }
+            Anws.Add(i);
         }
         int n = Anws.Count;
         while (n > 1)

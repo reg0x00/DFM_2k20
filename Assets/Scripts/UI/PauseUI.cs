@@ -199,19 +199,19 @@ public class PauseUI : MonoBehaviour
     }
     private void CheckAnwser(int number)
     {
-        if (PanelMsg.transform.Find("Text").GetComponent<Text>().IsActive())
+        if (PanelMsg.GetComponent<Image>().IsActive())
         {
             return;
         }
-        if (ActivEntry[number].GetComponent<Image>().sprite.name == "a")
+        if (ActivEntry[number].transform.Find("EqImg").GetComponent<Image>().sprite.name == "a")
         {
             LastCalledQ.PassQuestion();
-            PanelMsg.transform.Find("Text").GetComponent<Text>().text = "Верно!";
+            //PanelMsg.transform.Find("Text").GetComponent<Text>().text = "Верно!";
             PanelMsg.GetComponent<Animator>().SetTrigger("OK");
             ClearEqField();
             return;
         }
-        PanelMsg.transform.Find("Text").GetComponent<Text>().text = "не верно";
+        //PanelMsg.transform.Find("Text").GetComponent<Text>().text = "не верно";
         PanelMsg.GetComponent<Animator>().SetTrigger("Not_ok");
         Playerctl.Add_Health(-1);
         if (!(Playerctl.GetHealth > 0))
@@ -245,7 +245,7 @@ public class PauseUI : MonoBehaviour
         {
             GameObject element = Instantiate(init_eq);
             ActivEntry.Add(element);
-            element.GetComponent<Image>().sprite = Eq[i];
+            element.transform.Find("EqImg").GetComponent<Image>().sprite = Eq[i];
             element.transform.SetParent(EntryPaernt.transform);
             element.transform.GetChild(0).GetComponentInChildren<Image>().sprite = Keys_Sprt[i];
             element.SetActive(true);

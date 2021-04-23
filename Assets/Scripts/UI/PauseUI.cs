@@ -50,8 +50,7 @@ public class PauseUI : MonoBehaviour
     }
     private void Update()
     {
-        if (defeat)
-            return;
+
         if (ActiveButtonGO.Count != 0)
         {
             for (int i = 0; i < ActiveButtonGO.Count; i++)
@@ -64,6 +63,8 @@ public class PauseUI : MonoBehaviour
                 }
             }
         }
+        if (defeat)
+            return;
         if (Input.GetKeyDown("escape") && Time.timeScale != 0)
         {
             CangeMenuStatus(true);
@@ -123,6 +124,7 @@ public class PauseUI : MonoBehaviour
     {
         defeat = true;
         Time.timeScale = Convert.ToInt32(false);
+        ResetAllWindows();
         DefeatPanel.SetActive(true);
         BindKeysToBtn(DefeatPanel);
         BkgCnv.SetActive(true);

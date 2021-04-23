@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Question : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Question : MonoBehaviour
     private GameObject Block;
     private GameObject PauseUIGO;
     private Sprite HeadEqSprite;
+    private Image KeyInfo;
     private List<Sprite> Anws = new List<Sprite>();
     void Start()
     {
@@ -22,6 +24,8 @@ public class Question : MonoBehaviour
         //FolderName = System.IO.Directory.GetDirectories(FolderName)[Random.Range(1, possibleanws + 1)];
         FolderName = FolderName + "/" + (Random.Range(1, possibleanws + 1)).ToString();
         SetAnwsers();
+        KeyInfo = gameObject.transform.Find("Canvas").transform.Find("KeyDownInfo").GetComponent<Image>();
+        KeyInfo.enabled = false;
     }
     // Update is called once per frame
     void Update()
@@ -77,10 +81,25 @@ public class Question : MonoBehaviour
         Block.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name == "MainCharacter")
         {
+            KeyInfo.enabled = true;
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.name == "MainCharacter")
+        {
+            KeyInfo.enabled = false;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.name == "MainCharacter")
+        {            
             if (Input.GetKey(InteractKey))
             {
                 PauseUIGO.GetComponent<PauseUI>().DisplayEq(HeadEqSprite, Anws, this);

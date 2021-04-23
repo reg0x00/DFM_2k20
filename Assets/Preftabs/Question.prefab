@@ -755,7 +755,7 @@ GameObject:
   - component: {fileID: 6333400207745295958}
   - component: {fileID: 6333400207745295959}
   m_Layer: 5
-  m_Name: Image
+  m_Name: KeyDownInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

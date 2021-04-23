@@ -1,7 +1,271 @@
 fileFormatVersion: 2
 guid: 080678ab585f9e544afdf704f9541f0c
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 6626051464634953487
+    second: e
+  - first:
+      213: 5157330750027594722
+    second: e_1
+  - first:
+      213: 6917417014124226247
+    second: e_2
+  - first:
+      213: 8258558987491207619
+    second: e_3
+  - first:
+      213: -959119240817665187
+    second: e_4
+  - first:
+      213: 3237685955513055661
+    second: e_5
+  - first:
+      213: 3358992056510969992
+    second: e_6
+  - first:
+      213: -6380781142435602751
+    second: e_7
+  - first:
+      213: 6816350267817964857
+    second: e_8
+  - first:
+      213: -1878221634253235683
+    second: e_9
+  - first:
+      213: -9034137419911870536
+    second: e_10
+  - first:
+      213: -4686694691345869222
+    second: e_11
+  - first:
+      213: -8826528830488662268
+    second: e_12
+  - first:
+      213: -2084263336697078327
+    second: e_13
+  - first:
+      213: -1307180412720619578
+    second: e_14
+  - first:
+      213: 2739460851916887625
+    second: e_15
+  - first:
+      213: -4151445127093790812
+    second: e_16
+  - first:
+      213: -2514455338664749952
+    second: e_17
+  - first:
+      213: -1111887106742433855
+    second: e_18
+  - first:
+      213: -7666094261979717956
+    second: e_19
+  - first:
+      213: -2219689653357134117
+    second: e_20
+  - first:
+      213: 2511411632427433620
+    second: e_21
+  - first:
+      213: -2481003209715706246
+    second: e_22
+  - first:
+      213: 8861677590061350808
+    second: e_23
+  - first:
+      213: -3924610100605841793
+    second: e_24
+  - first:
+      213: -1244245735765612998
+    second: e_25
+  - first:
+      213: 5265604286466731965
+    second: e_26
+  - first:
+      213: 7856218145138071414
+    second: e_27
+  - first:
+      213: 997107978338428737
+    second: e_28
+  - first:
+      213: 7181893325641875431
+    second: e_29
+  - first:
+      213: -7637374587406635448
+    second: e_30
+  - first:
+      213: -4855502348071570090
+    second: e_31
+  - first:
+      213: -6879436897944399278
+    second: e_32
+  - first:
+      213: -329101189915672922
+    second: e_33
+  - first:
+      213: 4299895703597473804
+    second: e_34
+  - first:
+      213: -5635422765582285655
+    second: e_35
+  - first:
+      213: -786962774165492194
+    second: e_36
+  - first:
+      213: -6523106715963701506
+    second: e_37
+  - first:
+      213: 146303379523536574
+    second: e_38
+  - first:
+      213: -8257051404176426575
+    second: e_39
+  - first:
+      213: 7258539075381174840
+    second: e_40
+  - first:
+      213: -7025140977244923470
+    second: e_41
+  - first:
+      213: -7000457148061168648
+    second: e_42
+  - first:
+      213: -5249757847893708027
+    second: e_43
+  - first:
+      213: -1979190799992351377
+    second: e_44
+  - first:
+      213: 629846445069599197
+    second: e_45
+  - first:
+      213: -2449226583009690566
+    second: e_46
+  - first:
+      213: 1884363311591699502
+    second: e_47
+  - first:
+      213: 3764849491630706113
+    second: e_48
+  - first:
+      213: 8033293389382827943
+    second: e_49
+  - first:
+      213: -6082228507846504611
+    second: e_50
+  - first:
+      213: -2654067179594027856
+    second: e_51
+  - first:
+      213: -5495441359211579676
+    second: e_52
+  - first:
+      213: 3259642359668598605
+    second: e_53
+  - first:
+      213: -3057452313087252157
+    second: e_54
+  - first:
+      213: 875026143428593518
+    second: e_55
+  - first:
+      213: 3775672300494521443
+    second: e_56
+  - first:
+      213: 5089940060210595067
+    second: e_57
+  - first:
+      213: -7501685589787689151
+    second: e_58
+  - first:
+      213: -7336485819678811451
+    second: e_59
+  - first:
+      213: -7287238941520524031
+    second: e_60
+  - first:
+      213: -6846460088422751487
+    second: e_61
+  - first:
+      213: 6897938645936358965
+    second: e_62
+  - first:
+      213: 6518574843978827802
+    second: e_63
+  - first:
+      213: -7281931671735259452
+    second: e_64
+  - first:
+      213: -5306007067157576888
+    second: e_65
+  - first:
+      213: 6458629139413757620
+    second: e_66
+  - first:
+      213: -2146967057377793530
+    second: e_67
+  - first:
+      213: -6932521229809557852
+    second: e_68
+  - first:
+      213: -7716355016187009814
+    second: e_69
+  - first:
+      213: -5421428816190446887
+    second: e_70
+  - first:
+      213: 9157293512261021976
+    second: e_71
+  - first:
+      213: 1480609692948560884
+    second: e_72
+  - first:
+      213: 1013683894556942333
+    second: e_73
+  - first:
+      213: -4289266666963355287
+    second: e_74
+  - first:
+      213: 8344830602496065178
+    second: e_75
+  - first:
+      213: 2765704137569204412
+    second: e_76
+  - first:
+      213: -4724595241204334341
+    second: e_77
+  - first:
+      213: 3272794088739225421
+    second: e_78
+  - first:
+      213: 2451708083330970134
+    second: e_79
+  - first:
+      213: 4670694427909678435
+    second: e_80
+  - first:
+      213: 3824114254822196910
+    second: e_81
+  - first:
+      213: 7429756156719996832
+    second: e_82
+  - first:
+      213: -9161261911001125818
+    second: e_83
+  - first:
+      213: 2993719436771181239
+    second: e_84
+  - first:
+      213: 253360981224951487
+    second: e_85
+  - first:
+      213: -2577501303927827717
+    second: e_86
+  - first:
+      213: 3233660468657324018
+    second: e_87
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -31,7 +295,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,7 +304,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -70,9 +334,42 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: e
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 15
+        width: 713
+        height: 152
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0fe50563b674fb50800000000000000
+      internalID: 6626051464634953487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
